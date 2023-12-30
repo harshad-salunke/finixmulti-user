@@ -1,9 +1,12 @@
 import 'package:finixmulti_user/allScreens/service_onboarding_screens/service_schedule_screen.dart';
 import 'package:finixmulti_user/utils/app_colors.dart';
+import 'package:finixmulti_user/widgets/global/my_elevated_button.dart';
 import 'package:finixmulti_user/widgets/global/onboarding_appbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 class ServiceOnBoarding extends StatefulWidget {
+ static final  String routePath="/serviceOnBoardingScreen";
+
   const ServiceOnBoarding({Key? key}) : super(key: key);
 
   @override
@@ -56,52 +59,35 @@ class _ServiceOnBoardingState extends State<ServiceOnBoarding> {
             height: 10,
           ),
           Container(
-            height: 40,
-            width: 150,
             margin: EdgeInsets.fromLTRB(25, 5, 0, 5),
 
-            child: ElevatedButton(
+            child: MyElevatedButton(
+                title: "Yes",
+                height: 40,
+                width: 150,
+                fontsize: 18,
+                radius: 20,
+                bg_color: MyAppColor.primary_color,
+                fontWeight: FontWeight.w100,
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ServiceScheduleScreen()));
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: MyAppColor.primary_color,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)
-                    )
-                ),
-                child: Text(
-                  "Yes",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: "Brand-Bold",
-                      fontSize: 20
-                  ),
-                )),
+                  Navigator.pushNamed(context, ServiceScheduleScreen.routePath);
+
+                }),
           ),
           Container(
-            height: 40,
-            width: 150,
             margin: EdgeInsets.fromLTRB(25, 5, 0, 5),
 
-            child: ElevatedButton(
+            child: MyElevatedButton(
+                title: "No",
+                height: 40,
+                width: 150,
+                fontsize: 18,
+                radius: 20,
+                bg_color: MyAppColor.primary_color,
+                fontWeight: FontWeight.w100,
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ServiceScheduleScreen()));
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: MyAppColor.primary_color,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)
-                    )
-                ),
-                child: Text(
-                  "No",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: "Brand-Bold",
-                      fontSize: 20
-                  ),
-                )),
+                    Navigator.pushNamed(context, ServiceScheduleScreen.routePath);
+                }),
           ),
 
 

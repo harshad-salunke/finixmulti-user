@@ -1,7 +1,7 @@
 import 'package:finixmulti_user/widgets/services/product_card.dart';
 import 'package:flutter/material.dart';
 
-import '../../booking_page/BookingCard.dart';
+import '../../widgets/booking_page/BookingCard.dart';
 
 class ProductsScreen extends StatefulWidget {
   const ProductsScreen({Key? key}) : super(key: key);
@@ -19,8 +19,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
           children: [
             Container(
               margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
-              padding: EdgeInsets.zero,
-              height: 55,
               child: TextField(
                 decoration: InputDecoration(
                   fillColor: Colors.white,

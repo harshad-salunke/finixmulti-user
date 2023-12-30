@@ -1,4 +1,5 @@
 import 'package:finixmulti_user/allScreens/main_screen.dart';
+import 'package:finixmulti_user/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,8 +21,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         backgroundColor: Color(0xfff7f7f7)
       ),
-      home: MainScreen(),
-
+      initialRoute: MainScreen.routePath,
+      routes: getAppRoutes(),
     );
   }
 }

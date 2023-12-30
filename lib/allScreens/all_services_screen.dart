@@ -1,11 +1,11 @@
-import 'package:finixmulti_user/widgets/services/screens/products_screen.dart';
-import 'package:finixmulti_user/widgets/services/screens/services_screen.dart';
+import 'package:finixmulti_user/allScreens/all_services_Subscreen/products_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/services/services_navbar.dart';
+import 'all_services_Subscreen/services_screen.dart';
 class AllServicesScreen extends StatefulWidget {
   const AllServicesScreen({Key? key}) : super(key: key);
 
@@ -40,6 +40,7 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
               fontFamily: "Brand-Bold"
 
             ),),
+
           ServicesNavBar(
             callback: (index){
               pageController.jumpToPage(index);

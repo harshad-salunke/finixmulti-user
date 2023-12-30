@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/app_colors.dart';
-class CustomBox extends StatelessWidget {
+class PickTimeCustomBox extends StatelessWidget {
  final String text;
  final bool isSelected;
  final double height;
  final double width;
-   CustomBox({required this.text,required this.isSelected,required this.height,required this.width});
+ PickTimeCustomBox({required this.text,required this.isSelected,required this.height,required this.width});
 
 
   @override

@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../BookingCard.dart';
-class BookingAll extends StatefulWidget {
-  const BookingAll({Key? key}) : super(key: key);
+import '../../widgets/booking_page/BookingCard.dart';
+
+class BookingCompleted extends StatefulWidget {
+  const BookingCompleted({Key? key}) : super(key: key);
 
   @override
-  State<BookingAll> createState() => _BookingAllState();
+  State<BookingCompleted> createState() => _BookingCompletedState();
 }
 
-class _BookingAllState extends State<BookingAll> {
+class _BookingCompletedState extends State<BookingCompleted> {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       child: ListView.builder(
-        padding: EdgeInsets.zero,
           itemCount: 3,
           itemBuilder: (BuildContext con,int index){
             return BookingCard();

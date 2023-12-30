@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../allScreens/service_onboarding_screens/services_onboarding.dart';
-import '../main_service_card.dart';
+import '../../widgets/services/main_service_card.dart';
 
 class ServicesSreen extends StatefulWidget {
   const ServicesSreen({Key? key}) : super(key: key);
@@ -68,7 +68,7 @@ class _ServicesSreenState extends State<ServicesSreen> {
                   return InkWell(
                     onTap: (){
                       print("click");
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ServiceOnBoarding()));
+                      Navigator.pushNamed(context, ServiceOnBoarding.routePath);
                     },
                     child: MainServiceCard(
                       img: "fan_icon.png",

@@ -9,5 +9,17 @@ class MyAppColor{
   static Color white_light=Color(0xfff1f1f1);
   static Color black_light=Colors.black54;
   static Color green_light=Color(0xffecfbee);
+  static Color light_yellow=Color(0xfffff7d8);
+  static Color yellow=Color(0xfff4d03e);
+
+  static Color light_blue= Color(0xffe7fbff);
+  static Color blue=Color(0xff7ec5d4);
+
+
+  static Color light_purpl= Color(0xfff5f0ff);
+  static Color purpl=Color(0xff9769ff);
+
+
+
 
 }

@@ -1,14 +1,15 @@
 import 'package:finixmulti_user/utils/app_colors.dart';
 import 'package:finixmulti_user/widgets/booking_page/booking_nav_bar.dart';
-import 'package:finixmulti_user/widgets/booking_page/screens/booking_all.dart';
-import 'package:finixmulti_user/widgets/booking_page/screens/booking_cancelled.dart';
-import 'package:finixmulti_user/widgets/booking_page/screens/booking_completed.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../widgets/booking_page/screens/booking_active.dart';
+import 'booking_Subscreens/booking_active.dart';
+import 'booking_Subscreens/booking_all.dart';
+import 'booking_Subscreens/booking_cancelled.dart';
+import 'booking_Subscreens/booking_completed.dart';
+
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({Key? key}) : super(key: key);

@@ -1,3 +1,4 @@
+import 'package:finixmulti_user/widgets/global/my_textfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -65,22 +66,13 @@ class _HeadingWeidgetState extends State<HeadingWidget> {
             child: Row(
               children: [
                 Expanded(
-                  child: SizedBox(
-                    height: 60,
-                    child: TextField(
-                      decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(color: Color(0xff9e0093))),
-                          hintText: "Search here...",
-                          prefixIcon: Icon(Icons.search_rounded)),
-                    ),
-                  ),
+                  child:MyTextField(
+                      hinttext: "Search Here.....",
+                      height: 17,
+                      width: 10,
+                      radius: 10,
+                      iconData: Icon(Icons.search_rounded),
+                      textEditingController: TextEditingController()),
                 ),
                 Container(
                   decoration: BoxDecoration(

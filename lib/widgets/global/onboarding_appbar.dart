@@ -58,7 +58,7 @@ class OnBoardingAppbar extends StatelessWidget {
               SizedBox(
                 width: 30,
               ),
-              for(int i=0;i<4;i++)
+              for(int i=0;i<5;i++)
                 Expanded(
                   child: Container(
                     height: 10,

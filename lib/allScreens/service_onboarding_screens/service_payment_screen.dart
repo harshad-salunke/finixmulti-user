@@ -1,8 +1,14 @@
+import 'package:finixmulti_user/allScreens/service_onboarding_screens/payment_Subscreens/offlinepayment_screen.dart';
+import 'package:finixmulti_user/allScreens/service_onboarding_screens/payment_Subscreens/onlinepayment_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/app_colors.dart';
 import '../../widgets/global/onboarding_appbar.dart';
+import '../../widgets/services_onboarding/payment_page/payment_method_navbar.dart';
 class ServicePaymentScreen extends StatefulWidget {
+  static  final String routePath="/servicePaymentScreen";
+
   const ServicePaymentScreen({Key? key}) : super(key: key);
 
   @override
@@ -10,44 +16,96 @@ class ServicePaymentScreen extends StatefulWidget {
 }
 
 class _ServicePaymentScreenState extends State<ServicePaymentScreen> {
+  late  PageController pageController;
+  int currentpage=0;
+  @override
+  void initState() {
+    pageController=PageController(initialPage: 0);
+    super.initState();
+  }
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xfff7f7f7),
 
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          SizedBox(
-            height: 50,
-          ),
-          OnBoardingAppbar(
-            title: 'Payment Method',
-            currentPage: 4,),
-          Expanded(child: Container()),
+      body: Container(
 
-          Container(
-            height: 55,
-            margin: EdgeInsets.all(10),
-            child: ElevatedButton(
-                onPressed: (){
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: MyAppColor.primary_light,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)
-                    )
-                ),
-                child: Text(
-                  "Next",
-                  style: TextStyle(
-                      color: MyAppColor.primary_color,
-                      fontFamily: "Brand-Bold",
-                      fontSize: 18
-                  ),
-                )),
-          )
-        ],
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20))
+        ),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 50,
+            ),
+            OnBoardingAppbar(
+              title: 'Payment Method',
+              currentPage: 4,),
+             SizedBox(
+               height: 10,
+             ),
+             Expanded(
+               child: Container(
+               decoration: BoxDecoration(
+               color: Colors.white,
+
+               borderRadius: BorderRadius.only(topRight: Radius.circular(40),topLeft: Radius.circular(40))
+      ),
+
+                 child: Column(
+
+                   children: [
+                     SizedBox(
+                       height: 10,
+                     ),
+                     Center(
+                       child: Container(
+                         height: 3,
+                         width: 50,
+                         decoration: BoxDecoration(
+                           borderRadius: BorderRadius.circular(20),
+                           color: MyAppColor.black_light,
+
+                         ),
+                       ),
+                     ),
+                     SizedBox(height: 5,),
+                     PaymentMethodNavbar(
+                       callback: (index){
+                         pageController.jumpToPage(index);
+                       },
+                       current: currentpage,
+                     ),
+                     Expanded(
+                       child: PageView(
+                         controller:pageController,
+                         onPageChanged: (index){
+                           setState(() {
+                             currentpage=index;
+                           });
+                         },
+                         children: [
+                           OnlinePaymentScreen(),
+                           OfflinePaymentScreen(),
+                         ],
+                       ),
+                     ),
+                   ],
+                 ),
+               ),
+             )
+
+
+
+
+          ],
+        ),
       ),
     );
   }

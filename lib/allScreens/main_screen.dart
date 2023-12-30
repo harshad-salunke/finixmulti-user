@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 import '../utils/app_colors.dart';
-import '../widgets/services/screens/products_screen.dart';
+import 'all_services_Subscreen/products_screen.dart';
 class MainScreen extends StatefulWidget {
+  static final String routePath="/mainscreen";
   const MainScreen({Key? key}) : super(key: key);
 
   @override

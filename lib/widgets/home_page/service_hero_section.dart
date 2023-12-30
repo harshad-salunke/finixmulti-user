@@ -1,4 +1,5 @@
 import 'package:finixmulti_user/utils/app_colors.dart';
+import 'package:finixmulti_user/widgets/global/my_elevated_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -120,19 +121,17 @@ class ServiceHeroSection extends StatelessWidget {
           ]),
           Padding(
             padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-            child: ElevatedButton(
-
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: MyAppColor.primary_color,
-
-                    shape: RoundedRectangleBorder(
-
-                        borderRadius: BorderRadius.all(Radius.circular(5)))),
-                child: Text("Book Now",
-                    style: GoogleFonts.openSans(
-                    color: Colors.white
-                ),)),
+            child: MyElevatedButton(
+                title: "Book Now", 
+                height: 45,
+                width: double.infinity, 
+                fontsize: 15,
+                radius: 5,
+                bg_color: MyAppColor.primary_color,
+                fontWeight: FontWeight.w100,
+                onPressed: (){
+                  print("Clicked");
+                }),
           ),
         ],
       ),

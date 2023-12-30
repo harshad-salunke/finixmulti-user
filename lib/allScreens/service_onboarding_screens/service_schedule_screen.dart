@@ -1,15 +1,18 @@
 import 'package:finixmulti_user/allScreens/service_onboarding_screens/service_add_location_screen.dart';
+import 'package:finixmulti_user/widgets/global/my_elevated_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/app_colors.dart';
-import '../../widgets/global/CustomBox.dart';
+import '../../widgets/global/picktime_custom_box.dart';
 import '../../widgets/global/calender_widget.dart';
 import '../../widgets/global/onboarding_appbar.dart';
 
 class ServiceScheduleScreen extends StatefulWidget {
+  static  final String routePath="/serviceScheduleScreen";
+
   const ServiceScheduleScreen({Key? key}) : super(key: key);
 
   @override
@@ -115,7 +118,6 @@ int currentTime=-1;
                       selectTime.addAll(morningTime);
                      }else if(index==1){
                        selectTime.addAll(afternoonTime);
-
                      }else if(index==2){
                        selectTime.addAll(eveningTime);
                      }else{
@@ -123,7 +125,7 @@ int currentTime=-1;
                      }
                    });
                  },
-                 child: CustomBox(
+                 child: PickTimeCustomBox(
                    isSelected: currentPick==index,
                    text: picktime[index],
                    height: 20,
@@ -133,7 +135,7 @@ int currentTime=-1;
              }),
            ),
           SizedBox(
-            height: 30,
+            height: 5,
           ),
             Container(
               height: 60,
@@ -148,7 +150,7 @@ int currentTime=-1;
                           currentTime=index;
                         });
                       },
-                      child: CustomBox(
+                      child: PickTimeCustomBox(
                         isSelected: currentTime==index,
                         text: selectTime[index],
                         height: 30,
@@ -157,38 +159,29 @@ int currentTime=-1;
                     );
                   }),
             ),
+            SizedBox(
+              height: 100,
+            ),
 
-            Container(
-              margin: EdgeInsets.fromLTRB(15, 15, 15, 15),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ServiceAddLocation()));
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: MyAppColor.primary_color,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    "Next",
-                    style: TextStyle(
-                      color: MyAppColor.white_light,
-                      fontFamily: "Brand-Bold",
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-              ),
-            )
           ],
         ),
       ),
+      floatingActionButton: Container(
+        margin: EdgeInsets.fromLTRB(15,0,15,0),
+        width: double.infinity,
+        child: MyElevatedButton(
+            title: "Next",
+            height: 55,
+            width: double.infinity,
+            fontsize: 20,
+            radius: 5,
+            bg_color: MyAppColor.primary_color,
+            fontWeight: FontWeight.w100,
+            onPressed: (){
+              Navigator.pushNamed(context, ServiceAddLocation.routePath);
+            }),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 
     );
   }
