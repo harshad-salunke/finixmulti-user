@@ -1,4 +1,5 @@
 import 'package:finixmulti_user/allScreens/main_screen.dart';
+import 'package:finixmulti_user/allScreens/splash_screen.dart';
 import 'package:finixmulti_user/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 
@@ -16,12 +17,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
-        backgroundColor: Color(0xfff7f7f7)
+        scaffoldBackgroundColor: Color(0xfff7f7f7)
       ),
-      initialRoute: MainScreen.routePath,
+      initialRoute: SplashScreen.routePath,
       routes: getAppRoutes(),
     );
   }

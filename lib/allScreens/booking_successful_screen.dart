@@ -139,7 +139,7 @@ class _BookingSuccessfulState extends State<BookingSuccessfulScreen> {
             Navigator.pop(context);
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.deepOrange,
+            backgroundColor: MyAppColor.deeporange,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
             ),

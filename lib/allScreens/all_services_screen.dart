@@ -26,6 +26,7 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
     pageController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -57,8 +58,11 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
                 });
               },
               children: [
+
                 ProductsScreen(),
+
                 ServicesSreen()
+
               ],
             ),
           ),
@@ -72,4 +76,5 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
 
     );
   }
+
 }

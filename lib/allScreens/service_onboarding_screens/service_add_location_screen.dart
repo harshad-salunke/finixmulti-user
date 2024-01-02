@@ -10,7 +10,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../utils/app_colors.dart';
 import '../../widgets/global/onboarding_appbar.dart';
-import '../../widgets/services/location_add_button.dart';
+import '../../widgets/services_onboarding/location_add_button.dart';
 
 class ServiceAddLocation extends StatefulWidget {
   static final String routePath="/serviceAddAddressScreen";

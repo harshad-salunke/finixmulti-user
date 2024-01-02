@@ -2,6 +2,7 @@ import 'package:finixmulti_user/allScreens/service_onboarding_screens/service_pa
 import 'package:finixmulti_user/widgets/booking_page/BookingCard.dart';
 import 'package:finixmulti_user/widgets/global/my_textfield.dart';
 import 'package:finixmulti_user/widgets/services_onboarding/payment_page/payment_summary_widget.dart';
+import 'package:finixmulti_user/widgets/services_onboarding/service_selected_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -10,7 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/global/my_elevated_button.dart';
 import '../../widgets/global/onboarding_appbar.dart';
-import '../../widgets/services_onboarding/order_summary_service_card.dart';
+import '../../widgets/services_onboarding/orderSummary_page/order_summary_service_card.dart';
 class ServiceOrderSummary extends StatefulWidget {
   static final String routePath="/serviceOrderSummaryScreen";
 
@@ -68,7 +69,9 @@ class _ServiceOrderSummaryState extends State<ServiceOrderSummary> {
         child: Column(
           children: [
 
-            selectedService(),
+            ServiceSelectedWidget(
+              title: 'Your Selected Service',
+            ),
 
             selectedPickedDate(),
 
@@ -95,61 +98,7 @@ class _ServiceOrderSummaryState extends State<ServiceOrderSummary> {
     );
   }
 
-  Widget selectedService() {
-    return Container(
-        margin:EdgeInsets.all(10),
-        padding: EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-          color: Colors.white,
-        ),
-        child: Column(
-          children: [
-            SizedBox(height: 8,),
-            Container(
-              child: Row(
-                children: [
-                  Center(
-                    child: Container(
-                      width: 5,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: MyAppColor.primary_color,
 
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 8,),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Your Service",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: MyAppColor.primary_color,
-                              fontFamily: 'Brand-Bold'),
-                        ),
-                        SizedBox(height: 3,),
-                        OrderSummaryServiceCard(),
-
-
-                      ],
-                    ),
-                  ),
-                  Center(
-                    child: Icon(Icons.navigate_next),
-                  )
-                ],
-              ),
-            )
-          ],
-        )
-    );
-  }
 
   Widget selectedAddress() {
 
@@ -274,12 +223,22 @@ Widget additionalInstruction() {
                             fontFamily: 'Brand-Bold'),
                       ),
                       SizedBox(height: 3,),
-                      MyTextField(
-                        hinttext: "Additional instruction of service (optional)",
-                        height: 14,
-                        width: 14,
-                        radius: 10,
-                        textEditingController: TextEditingController(),
+                      TextField(
+                        controller: TextEditingController(),
+                        decoration: InputDecoration(
+                          hintText: 'Additional instruction of service (optional)',
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 14,
+                            horizontal: 14,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Color(0xff9e0093)),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
                       )
 
                     ],

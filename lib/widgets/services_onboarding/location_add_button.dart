@@ -1,14 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class LocationAddButton extends StatelessWidget {
+class CircularIconButton extends StatelessWidget {
   String title;
   IconData icon;
   Color bgcolor;
   Color iconColor;
   int index;
+  double height;
+  double width;
+  double iconsize;
+  bool hastext;
   Function(int) callback;
-   LocationAddButton({required this.index,required this.title,required this.icon,required this.bgcolor,required this.iconColor,required this.callback});
+  CircularIconButton({required this.index,
+     this.title='',
+    required this.icon,required
+    this.bgcolor,
+    required this.iconColor,
+    required this.height,
+    required this.width,
+    required this.iconsize,
+    required this.hastext,
+    required this.callback});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +32,8 @@ class LocationAddButton extends StatelessWidget {
             callback(index);
           },
           child: Container(
-            height: 60,
-            width: 60,
+            height: height,
+            width: width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: bgcolor,
@@ -29,16 +42,16 @@ class LocationAddButton extends StatelessWidget {
             child: Icon(
                 icon,
               color: iconColor,
-              size: 30,
+              size: iconsize,
             ),
 
           ),
         ),
-        SizedBox(height: 4,),
-        Text(title,
+     hastext?SizedBox(height: 4,):SizedBox(),
+        hastext?   Text(title,
         style: TextStyle(
           fontFamily: "Brand-Bold"
-        ),)
+        ),):SizedBox()
       ],
     );
   }

@@ -14,7 +14,7 @@ class PersonContactCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
           boxShadow: [
           BoxShadow(
-          color: Colors.black,
+              color: MyAppColor.primary_light,
           blurRadius: 10.0,
           spreadRadius: 0.5,
           offset: Offset(0.7,0.7)

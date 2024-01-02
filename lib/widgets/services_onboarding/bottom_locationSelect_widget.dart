@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../allScreens/service_onboarding_screens/service_payment_screen.dart';
 import '../../allScreens/service_onboarding_screens/service_order_summary_screen.dart';
 import '../../utils/app_colors.dart';
-import '../services/location_add_button.dart';
+import 'location_add_button.dart';
 import 'address_bottom_sheet.dart';
 
 class BottomLocationSelect extends StatefulWidget {
@@ -84,7 +84,7 @@ class _BottomLocationSelectState extends State<BottomLocationSelect> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                LocationAddButton(
+                CircularIconButton(
                   index: 0,
                   title: "Home",
                   icon: Icons.home_filled,
@@ -94,13 +94,17 @@ class _BottomLocationSelectState extends State<BottomLocationSelect> {
                   iconColor: currentSelected == 0
                       ? MyAppColor.white_light
                       : MyAppColor.primary_color,
+                  height: 60,
+                  width: 60,
+                  iconsize: 30,
+                  hastext: true,
                   callback: (index) {
                     setState(() {
                       currentSelected = index;
                     });
                   },
                 ),
-                LocationAddButton(
+                CircularIconButton(
                   index: 1,
                   title: "Work",
                   icon: Icons.home_repair_service,
@@ -110,13 +114,18 @@ class _BottomLocationSelectState extends State<BottomLocationSelect> {
                   iconColor: currentSelected == 1
                       ? MyAppColor.white_light
                       : MyAppColor.primary_color,
+                  height: 60,
+                  width: 60,
+                  iconsize: 30,
+                  hastext: true,
+
                   callback: (index) {
                     setState(() {
                       currentSelected = index;
                     });
                   },
                 ),
-                LocationAddButton(
+                CircularIconButton(
                   index: 2,
                   title: "Add New",
                   icon: Icons.add_location_sharp,
@@ -126,6 +135,11 @@ class _BottomLocationSelectState extends State<BottomLocationSelect> {
                   iconColor: currentSelected == 2
                       ? MyAppColor.white_light
                       : MyAppColor.primary_color,
+                  height: 60,
+                  width: 60,
+                  iconsize: 30,
+                  hastext: true,
+
                   callback: (index) {
                     showBottomSheet(context);
                     setState(() {

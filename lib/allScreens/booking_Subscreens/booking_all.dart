@@ -1,3 +1,4 @@
+import 'package:finixmulti_user/allScreens/booking_details_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/booking_page/BookingCard.dart';
@@ -18,7 +19,11 @@ class _BookingAllState extends State<BookingAll> {
         padding: EdgeInsets.zero,
           itemCount: 3,
           itemBuilder: (BuildContext con,int index){
-            return BookingCard();
+            return InkWell(
+              onTap: (){
+                Navigator.pushNamed(context, BookingDetailsScreen.routePath);
+              },
+                child: BookingCard());
           }),
     );
   }

@@ -72,8 +72,6 @@ class ServiceDiscountBanner extends StatelessWidget {
             width: 155,
             autostart: Autostart.once,
             fit: BoxFit.contain,
-
-
           )
         ],
       ),
