@@ -1,6 +1,9 @@
+import 'package:finixmulti_user/allScreens/details_screen.dart';
 import 'package:finixmulti_user/widgets/services/product_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../FirebaseServices/providers/services_provider.dart';
 import '../../widgets/booking_page/BookingCard.dart';
 
 class ProductsScreen extends StatefulWidget {
@@ -11,6 +14,7 @@ class ProductsScreen extends StatefulWidget {
 }
 
 class _ProductsScreenState extends State<ProductsScreen> {
+
   @override
   Widget build(BuildContext context) {
     return  Container(
@@ -18,6 +22,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
+              height: 60,
               margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
               child: TextField(
                 decoration: InputDecoration(
@@ -36,11 +41,25 @@ class _ProductsScreenState extends State<ProductsScreen> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: 10,
-                itemBuilder: (BuildContext con, int index) {
-                  return ProductCard();
+              child: Consumer<ServiceProvider>(
+                builder: (context,serviceProvider,_){
+                  return serviceProvider.isProductDataLoaded? Center(
+                    child: CircularProgressIndicator(),
+                  ):
+                  ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemCount: serviceProvider.product_list.length,
+                    itemBuilder: (BuildContext con, int index) {
+                      return InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsScreen(product: serviceProvider.product_list[index],)));
+                        },
+                        child: ProductCard(
+                          product: serviceProvider.product_list[index],
+                        ),
+                      );
+                    },
+                  );
                 },
               ),
             ),

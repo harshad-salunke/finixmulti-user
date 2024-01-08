@@ -1,12 +1,11 @@
-import 'package:finixmulti_user/allScreens/booking_screen.dart';
-import 'package:finixmulti_user/allScreens/home_screen.dart';
-import 'package:finixmulti_user/allScreens/all_services_screen.dart';
-import 'package:finixmulti_user/allScreens/profile_screen.dart';
+import 'package:finixmulti_user/allScreens/mainSubscreen/booking_screen.dart';
+import 'package:finixmulti_user/allScreens/mainSubscreen/home_screen.dart';
+import 'package:finixmulti_user/allScreens/mainSubscreen/all_services_screen.dart';
+import 'package:finixmulti_user/allScreens/mainSubscreen/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 import '../utils/app_colors.dart';
-import 'all_services_Subscreen/products_screen.dart';
 class MainScreen extends StatefulWidget {
   static final String routePath="/mainscreen";
   const MainScreen({Key? key}) : super(key: key);
@@ -35,19 +34,21 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       backgroundColor: Color(0xfff7f7f7),
 
-      body: PageView(
-        controller: pageController,
-        onPageChanged: (index){
-          setState(() {
-            currentPage=index;
-          });
-        },
-        children: [
-          HomeScreen(),
-          AllServicesScreen(),
-          BookingScreen(),
-          ProfileScreen()
-        ],
+      body: SafeArea(
+        child: PageView(
+          controller: pageController,
+          onPageChanged: (index){
+            setState(() {
+              currentPage=index;
+            });
+          },
+          children: [
+            HomeScreen(),
+            AllServicesScreen(),
+            BookingScreen(),
+            ProfileScreen()
+          ],
+        ),
       ),
 
       bottomNavigationBar: Container(

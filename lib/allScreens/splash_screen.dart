@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:finixmulti_user/allScreens/login_screens/login_screen.dart';
 import 'package:finixmulti_user/allScreens/main_screen.dart';
 import 'package:finixmulti_user/utils/app_colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,12 +28,12 @@ class _SplashScreenState extends State<SplashScreen> {
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: MyAppColor.status_bar_color,
       ));
-      Navigator.pushNamed(context, MainScreen.routePath);
+      Navigator.pushNamed(context, LoginScreen.routePath);
     });
   }
 
   @override
-  void dispose() {
+  void dispose( ) {
     // TODO: implement dispose
     super.dispose();
 

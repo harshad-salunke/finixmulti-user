@@ -1,28 +1,41 @@
-import 'package:finixmulti_user/allScreens/main_screen.dart';
-import 'package:finixmulti_user/allScreens/splash_screen.dart';
+import 'package:finixmulti_user/FirebaseServices/providers/firbase_auth_handler.dart';
+import 'package:finixmulti_user/allScreens/login_screens/login_screen.dart';
+import 'package:finixmulti_user/utils/app_colors.dart';
 import 'package:finixmulti_user/utils/app_routes.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+import 'FirebaseServices/providers/services_provider.dart';
+
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-        scaffoldBackgroundColor: Color(0xfff7f7f7)
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ServiceProvider()),
+        ChangeNotifierProvider(create: (context) => FirebaseAuthHandler()),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: MyAppColor.primary_color),
+            useMaterial3: true,
+            scaffoldBackgroundColor: Color(0xfff7f7f7)
+        ),
+        initialRoute: LoginScreen.routePath,
+        routes: getAppRoutes(),
       ),
-      initialRoute: SplashScreen.routePath,
-      routes: getAppRoutes(),
     );
   }
 }

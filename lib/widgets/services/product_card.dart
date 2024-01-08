@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
+import '../../Models/product.dart';
 import '../../utils/app_colors.dart';
 class ProductCard extends StatelessWidget {
-  const ProductCard({Key? key}) : super(key: key);
+  Product product;
+   ProductCard({required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -24,24 +27,36 @@ class ProductCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Card(
 
-                    child: Image(
-                      image: AssetImage(
-                          "assets/images/newlogo.png"
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15.0),
+                      child: CachedNetworkImage(
+                        imageUrl: product.imgUri[0],
+                        placeholder: (context, url) => Image.asset(
+                          "assets/images/newlogo.png", // Replace with your loading image
+                          fit: BoxFit.cover,
+                          height: 100,
+                          width: 100,
+                        ),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        fit: BoxFit.cover,
+                        height: 100,
+                        width: 100,
                       ),
-                      fit: BoxFit.cover,
-                      height: 100,
-                      width: 100,
                     ),
                   ),
+
                   SizedBox(
                     width: 10,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Fan Service",
+                      Text('${product.name}',
                         style: GoogleFonts.openSans(
                             fontSize: 16,
                             fontWeight: FontWeight.w700
@@ -59,7 +74,7 @@ class ProductCard extends StatelessWidget {
                               children: [
                                 Icon(Icons.star,
                                   color:Colors.orangeAccent ,),
-                                Text("4.5",
+                                Text('${product.rating}',
                                   style: GoogleFonts.openSans(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w700
@@ -69,7 +84,7 @@ class ProductCard extends StatelessWidget {
                           ),
                           SizedBox(width: 15,),
                           Text(
-                            "10 % off",
+                            "${calculateDiscountPercentage(product.price,product.disPrice)} % off",
                             style:GoogleFonts.openSans(
                               fontWeight: FontWeight.w400,
                               fontSize: 15,
@@ -87,7 +102,7 @@ class ProductCard extends StatelessWidget {
                         children: [
 
                           Text(
-                            "₹ 200.0",
+                            "₹ ${product.disPrice}",
                             style: GoogleFonts.openSans(
                                 fontWeight: FontWeight.w800,
                                 fontSize: 18,
@@ -97,7 +112,7 @@ class ProductCard extends StatelessWidget {
                           ),
                           SizedBox(width: 8,),
                           Text(
-                            "₹ 299.0",
+                            "₹ ${product.price}",
                             style:GoogleFonts.openSans(
                               fontWeight: FontWeight.w400,
                               fontSize: 15,
@@ -107,7 +122,6 @@ class ProductCard extends StatelessWidget {
                             ),
 
                           ),
-
 
 
                         ],
@@ -123,7 +137,7 @@ class ProductCard extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 20,
+            height: 15,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -167,5 +181,12 @@ class ProductCard extends StatelessWidget {
         ],
       ),
     );
+  }
+  int calculateDiscountPercentage(int originalPrice, int discountedPrice) {
+    if (originalPrice <= 0 || discountedPrice <= 0) {
+      return 0;
+    }
+    int discountPercentage = ((originalPrice - discountedPrice) / originalPrice * 100).round();
+    return discountPercentage;
   }
 }

@@ -21,7 +21,7 @@ class BookingDetailsScreen extends StatefulWidget {
 class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
   int minutes = 1;
   int seconds = 0;
-  int maxMinutes = 3;
+  int maxMinutes = 120;
   int maxSeconds = 30;
   @override
   void initState() {
@@ -47,9 +47,7 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
               height: 50,
             ),
             MyAppBar(title: "Booking Details"),
-
             BookedServiceCard(title: "Your Booked Service"),
-
             Expanded(
               child: Stack(
                 children: [

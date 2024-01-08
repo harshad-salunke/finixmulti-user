@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'booking_Subscreens/booking_active.dart';
-import 'booking_Subscreens/booking_all.dart';
-import 'booking_Subscreens/booking_cancelled.dart';
-import 'booking_Subscreens/booking_completed.dart';
+import '../bookingPageSubscreens/booking_active.dart';
+import '../bookingPageSubscreens/booking_all.dart';
+import '../bookingPageSubscreens/booking_cancelled.dart';
+import '../bookingPageSubscreens/booking_completed.dart';
+
+
 
 
 class BookingScreen extends StatefulWidget {
@@ -38,7 +40,7 @@ int currentpage=0;
         mainAxisAlignment: MainAxisAlignment.start,
 
         children: [
-          SizedBox(height: 50,),
+          SizedBox(height: 10,),
           Text("Bookings",
           style: GoogleFonts.openSans(
             fontSize: 25,

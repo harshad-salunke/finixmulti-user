@@ -1,11 +1,13 @@
-import 'package:finixmulti_user/allScreens/all_services_Subscreen/products_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-import '../widgets/services/services_navbar.dart';
-import 'all_services_Subscreen/services_screen.dart';
+import '../../FirebaseServices/providers/services_provider.dart';
+import '../../widgets/services/services_navbar.dart';
+import '../servicesPageSubscreen/products_screen.dart';
+import '../servicesPageSubscreen/services_screen.dart';
+
 class AllServicesScreen extends StatefulWidget {
   const AllServicesScreen({Key? key}) : super(key: key);
 
@@ -18,9 +20,11 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
   int currentpage=0;
   @override
   void initState() {
+    Provider.of<ServiceProvider>(context,listen: false).fetchProducts();
     pageController=PageController(initialPage: 0);
     super.initState();
   }
+
   @override
   void dispose() {
     pageController.dispose();
@@ -33,7 +37,7 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(height: 50,),
+          SizedBox(height: 10,),
           Text("Services",
             style: TextStyle(
                 fontSize: 25,

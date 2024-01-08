@@ -22,9 +22,8 @@ class _HeadingWeidgetState extends State<HeadingWidget> {
       child: Column(
         children: [
 
-          SizedBox(height: 30,),
           Padding(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

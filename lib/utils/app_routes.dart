@@ -11,11 +11,15 @@ import 'package:finixmulti_user/allScreens/serviceman_details_screen.dart';
 import 'package:finixmulti_user/allScreens/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../allScreens/login_screens/login_screen.dart';
+import '../allScreens/login_screens/register_screen.dart';
+
 Map<String, Widget Function(BuildContext)> getAppRoutes(){
   Map<String, Widget Function(BuildContext)> appRoutes={};
   appRoutes.addAll(serviceOnBoardingRoutes);
   appRoutes.addAll(globalAppRoutes);
   appRoutes.addAll(bookingsAllRoutes);
+  appRoutes.addAll(loginRoutes);
   return appRoutes;
 }
 
@@ -26,6 +30,12 @@ Map<String, Widget Function(BuildContext)>serviceOnBoardingRoutes={
   ServiceAddLocation.routePath:(context)=>const ServiceAddLocation(),
   ServiceOrderSummary.routePath:(context)=>const ServiceOrderSummary(),
   ServicePaymentScreen.routePath:(context)=>const ServicePaymentScreen(),
+};
+
+Map<String, Widget Function(BuildContext)>loginRoutes={
+  LoginScreen.routePath:(context)=>LoginScreen(),
+  RegisterScreen.routePath:(context)=>RegisterScreen(),
+
 };
 
 Map<String, Widget Function(BuildContext)>bookingsAllRoutes={
