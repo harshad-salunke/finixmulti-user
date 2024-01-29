@@ -71,7 +71,7 @@ class DropDownList extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(
             vertical: 22, horizontal: 15),
         enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black)),
+            borderSide: BorderSide(color: MyAppColor.primary_color)),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 color: MyAppColor.primary_color)),

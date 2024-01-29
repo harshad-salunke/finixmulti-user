@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:finixmulti_user/Models/product.dart';
 import 'package:finixmulti_user/widgets/global/my_brand_bold_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,7 +9,9 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../utils/app_colors.dart';
 
 class OtherBasicDetails extends StatefulWidget {
-  const OtherBasicDetails({Key? key}) : super(key: key);
+ final Product product;
+
+  OtherBasicDetails({required this.product}) ;
 
   @override
   State<OtherBasicDetails> createState() => _OtherBasicDetailsState();
@@ -23,7 +26,7 @@ class _OtherBasicDetailsState extends State<OtherBasicDetails> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    startTimer();
+    // startTimer();
   }
 
   @override
@@ -236,7 +239,7 @@ class _OtherBasicDetailsState extends State<OtherBasicDetails> {
                                     fontWeight: FontWeight.w700),
                               ),
                               Text(
-                                "cisco",
+                                "${widget.product.brandName}",
                                 style: GoogleFonts.ubuntu(
                                   fontSize: 15,
                                 ),

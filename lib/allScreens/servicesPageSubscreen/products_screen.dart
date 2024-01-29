@@ -1,9 +1,10 @@
-import 'package:finixmulti_user/allScreens/details_screen.dart';
+import 'package:finixmulti_user/allScreens/servicesPageSubscreen/product_details_screen.dart';
 import 'package:finixmulti_user/widgets/services/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../FirebaseServices/providers/services_provider.dart';
+import '../../Models/product.dart';
 import '../../widgets/booking_page/BookingCard.dart';
 
 class ProductsScreen extends StatefulWidget {
@@ -14,20 +15,41 @@ class ProductsScreen extends StatefulWidget {
 }
 
 class _ProductsScreenState extends State<ProductsScreen> {
-
+  List<Product> productList=[];
+  bool isSearching=false;
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      child: Column(
+    return  Consumer<ServiceProvider>(builder: (_,serviceProvider,__){
+     if(!isSearching){
+       productList.clear();
+       productList.addAll(serviceProvider.product_list);
+     }
+      return Container(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               height: 60,
               margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
               child: TextField(
+                onChanged: (text){
+                  isSearching=true;
+                  productList.clear();
+                  serviceProvider.product_list.forEach((product) {
+                    if(product.name.contains(text)){
+                      productList.add(product);
+                    }else if(text==''){
+                      productList.addAll(serviceProvider.product_list);
+                    }
+                  });
+                  setState(() {
+                  });
+
+                },
                 decoration: InputDecoration(
                   fillColor: Colors.white,
                   filled: true,
+
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -41,30 +63,30 @@ class _ProductsScreenState extends State<ProductsScreen> {
               ),
             ),
             Expanded(
-              child: Consumer<ServiceProvider>(
-                builder: (context,serviceProvider,_){
-                  return serviceProvider.isProductDataLoaded? Center(
-                    child: CircularProgressIndicator(),
-                  ):
-                  ListView.builder(
-                    padding: EdgeInsets.zero,
-                    itemCount: serviceProvider.product_list.length,
-                    itemBuilder: (BuildContext con, int index) {
-                      return InkWell(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsScreen(product: serviceProvider.product_list[index],)));
-                        },
-                        child: ProductCard(
-                          product: serviceProvider.product_list[index],
-                        ),
-                      );
+              child:
+              serviceProvider.isProductDataLoading? Center(
+                child: CircularProgressIndicator(),
+              ):
+              ListView.builder(
+                padding: EdgeInsets.zero,
+                itemCount: productList.length,
+                itemBuilder: (BuildContext con, int index) {
+                  return InkWell(
+                    onTap: (){
+                      serviceProvider.setSelectedProduct(productList[index]);
+                      Navigator.pushNamed(context, ProductDetailsScreen.routePath);
                     },
+                    child: ProductCard(
+                      product: productList[index],
+                    ),
                   );
                 },
+              )
               ),
-            ),
+
           ],
         ),
-    );
+      );
+    });
   }
 }

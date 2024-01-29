@@ -2,13 +2,18 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:finixmulti_user/allScreens/login_screens/login_screen.dart';
+import 'package:finixmulti_user/allScreens/mainSubscreen/home_screen.dart';
 import 'package:finixmulti_user/allScreens/main_screen.dart';
 import 'package:finixmulti_user/utils/app_colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gif/gif.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../FirebaseServices/providers/services_provider.dart';
 
 class SplashScreen extends StatefulWidget {
   static final String routePath = '/splashscreen';
@@ -19,16 +24,32 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  FirebaseAuth firebaseAuth=FirebaseAuth.instance;
   @override
   void initState() {
+    if(firebaseAuth.currentUser?.uid!=null){
+      Provider.of<ServiceProvider>(context,listen: false).fetchProducts();
+      Provider.of<ServiceProvider>(context,listen: false).fetchUserDetails();
+      Provider.of<ServiceProvider>(context,listen: false).fetchBookings();
+      Provider.of<ServiceProvider>(context,listen: false).fetchServices();
+
+    }else{
+      print('user not login');
+    }
     super.initState();
-    Timer(Duration(seconds: 10), () {
+    Timer(Duration(seconds: 5), () {
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
           overlays: SystemUiOverlay.values);
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: MyAppColor.status_bar_color,
       ));
-      Navigator.pushNamed(context, LoginScreen.routePath);
+
+      if(firebaseAuth.currentUser?.uid!=null){
+        Navigator.pushReplacementNamed(context, MainScreen.routePath);
+      }else{
+        Navigator.pushReplacementNamed(context, LoginScreen.routePath);
+      }
+
     });
   }
 
@@ -61,10 +82,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
           Positioned(
               top: 55,
-              left: 0,
+              left: 10,
               child: Image(
                 image: AssetImage('assets/images/company_logo.png'),
-                height: 55,
+                height: 70,
                 width: 200,
               )),
 
@@ -78,7 +99,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     height: 15,
                   ),
                   Text(
-                    'TRUSTED EXPARTS',
+                    'TRUSTED EXPERTS',
                     style: GoogleFonts.firaSansExtraCondensed(
                       color: MyAppColor.golden_color,
                       fontSize: 20,
@@ -94,7 +115,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     ),
                   ),
                   Text(
-                    ' We make sure excellent services thought \n  our expart workers.',
+                    ' We make sure excellent services thought \n  our expert workers.',
                     style: GoogleFonts.ubuntu(
                       color: Colors.black54,
                       fontSize: 15,

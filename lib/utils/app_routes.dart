@@ -1,6 +1,11 @@
 
-import 'package:finixmulti_user/allScreens/booking_details_screen.dart';
-import 'package:finixmulti_user/allScreens/booking_successful_screen.dart';
+
+import 'package:finixmulti_user/allScreens/booking_related_screens/booked_service_details_screen.dart';
+import 'package:finixmulti_user/allScreens/booking_related_screens/booking_details_screen.dart';
+import 'package:finixmulti_user/allScreens/booking_related_screens/booking_successful_screen.dart';
+import 'package:finixmulti_user/allScreens/profile_related_screens/notification_screen.dart';
+import 'package:finixmulti_user/allScreens/search_screen.dart';
+import 'package:finixmulti_user/allScreens/servicesPageSubscreen/product_details_screen.dart';
 import 'package:finixmulti_user/allScreens/main_screen.dart';
 import 'package:finixmulti_user/allScreens/service_onboarding_screens/service_add_location_screen.dart';
 import 'package:finixmulti_user/allScreens/service_onboarding_screens/service_order_summary_screen.dart';
@@ -13,6 +18,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../allScreens/login_screens/login_screen.dart';
 import '../allScreens/login_screens/register_screen.dart';
+import '../allScreens/servicesPageSubscreen/service_details_screen.dart';
 
 Map<String, Widget Function(BuildContext)> getAppRoutes(){
   Map<String, Widget Function(BuildContext)> appRoutes={};
@@ -41,12 +47,18 @@ Map<String, Widget Function(BuildContext)>loginRoutes={
 Map<String, Widget Function(BuildContext)>bookingsAllRoutes={
   BookingDetailsScreen.routePath:(context)=>BookingDetailsScreen(),
   BookingSuccessfulScreen.routePath:(context)=>const BookingSuccessfulScreen(),
-  ServicemanDetailsScreen.routPaht:(conntext)=>ServicemanDetailsScreen()
+  ServicemanDetailsScreen.routPaht:(conntext)=>ServicemanDetailsScreen(),
+  BookedServiceDetails.routePath:(context)=>BookedServiceDetails(),
+
 };
 
 Map<String, Widget Function(BuildContext)>globalAppRoutes={
   MainScreen.routePath:(context)=>const MainScreen(),
   SplashScreen.routePath:(context)=>const SplashScreen(),
+  ProductDetailsScreen.routePath:(context)=> ProductDetailsScreen(),
+  ServiceDetailsScreen.routePath:(context)=> ServiceDetailsScreen(),
+  SearchScreen.routePath:(context)=>SearchScreen(),
+  NotificationScreen.routePath:(context)=>NotificationScreen()
 };
 
 

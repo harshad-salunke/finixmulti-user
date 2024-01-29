@@ -1,12 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:finixmulti_user/utils/global_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../Models/booking_modle.dart';
+import '../../Models/product.dart';
 import '../../utils/app_colors.dart';
 import '../services_onboarding/orderSummary_page/order_summary_service_card.dart';
 
 class BookedServiceCard extends StatelessWidget {
-  String title;
-  BookedServiceCard({required this.title}) ;
+  BookingModel bookingModle;
+  Product product;
+  BookedServiceCard({required this.bookingModle,required this.product}) ;
 
   @override
   Widget build(BuildContext context) {
@@ -28,30 +33,50 @@ class BookedServiceCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image(
-              image: AssetImage(
-                  "assets/images/newlogo.png"
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
               ),
-              fit: BoxFit.cover,
-              height: 60,
-              width: 60,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15.0),
+                child: CachedNetworkImage(
+                  imageUrl: product.imgUri[0],
+                  placeholder: (context, url) => Image.asset(
+                    "assets/images/newlogo.png", // Replace with your loading image
+                    fit: BoxFit.cover,
+                    height: 60,
+                    width: 60,
+                  ),
+                  errorWidget: (context, url, error) =>  Image.asset(
+                    "assets/images/newlogo.png", // Replace with your loading image
+                    fit: BoxFit.cover,
+                    height: 60,
+                    width: 60,
+                  ),
+                  fit: BoxFit.cover,
+                  height: 60,
+                  width: 60,
+                ),
+              ),
             ),
+            SizedBox(width: 5,),
+
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Fan Service",
+                Text(getTextName('${product.name}'),
                   style: GoogleFonts.openSans(
                       fontSize: 14,
                       fontWeight: FontWeight.w700
                   ),
                 ),
 
-                Text("Pick up time",
+                Text("Pick up date",
                   style: GoogleFonts.openSans(
                       fontSize: 12,
                       fontWeight: FontWeight.w700
                   ),),
-                Text("12 April, 2023, 11:00 PM ",
+                Text("${formatDateString(bookingModle.date)}",
                   style: GoogleFonts.ubuntu(
                     fontSize: 12,
                     color: MyAppColor.black_light,
@@ -66,5 +91,14 @@ class BookedServiceCard extends StatelessWidget {
           ],
         )
     );
+  }
+
+  String getTextName(String name) {
+
+    if(name.length>25){
+      return '${ name.substring(0,25)}..';
+    }
+    return name;
+
   }
 }

@@ -1,6 +1,7 @@
 class Product {
   String uid;
   String name;
+  String brandName;
   String des;
   int price;
   int disPrice;
@@ -11,6 +12,7 @@ class Product {
   Product({
     required this.uid,
     required this.name,
+    required this.brandName,
     required this.des,
     required this.price,
     required this.disPrice,
@@ -23,6 +25,7 @@ class Product {
     Map<String, dynamic> data = {
       'uid': uid,
       'name': name,
+      'brandName':brandName,
       'des': des,
       'price': price,
       'disPrice': disPrice,
@@ -37,6 +40,7 @@ class Product {
     return Product(
       uid: json['uid'],
       name: json['name'],
+      brandName:json['brandName'],
       des: json['des'],
       price: json['price'],
       disPrice: json['disPrice'],

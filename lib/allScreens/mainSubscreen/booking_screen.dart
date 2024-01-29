@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
+import '../../FirebaseServices/providers/services_provider.dart';
 import '../bookingPageSubscreens/booking_active.dart';
 import '../bookingPageSubscreens/booking_all.dart';
 import '../bookingPageSubscreens/booking_cancelled.dart';
@@ -14,7 +16,8 @@ import '../bookingPageSubscreens/booking_completed.dart';
 
 
 class BookingScreen extends StatefulWidget {
-  const BookingScreen({Key? key}) : super(key: key);
+  Function isBooknowBtnClick;
+   BookingScreen({required this.isBooknowBtnClick});
 
   @override
   State<BookingScreen> createState() => _BookingScreenState();
@@ -25,6 +28,7 @@ late  PageController pageController;
 int currentpage=0;
   @override
   void initState() {
+
     pageController=PageController(initialPage: 0);
     super.initState();
   }
@@ -61,7 +65,9 @@ int currentpage=0;
                 });
               },
               children: [
-                BookingAll(),
+                BookingAll(
+                    isBooknowBtnClick:widget.isBooknowBtnClick
+                ),
                 BookingActivePage(),
                 BookingCompleted(),
                 BookingCancelled()

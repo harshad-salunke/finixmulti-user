@@ -23,5 +23,6 @@ class MyAppColor{
   static Color golden_color=Color(0xffd68d1c);
   static Color deeporange=Colors.deepOrange;
 
-
+ static Color kPrimaryColor = Color(0xFFFF7643);
+  static Color kPrimaryLightColor = Color(0xFFFFECDF);
 }

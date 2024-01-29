@@ -1,13 +1,18 @@
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:finixmulti_user/allScreens/login_screens/register_screen.dart';
+import 'package:finixmulti_user/textController/LoginController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rive/rive.dart';
+import 'package:provider/provider.dart';
 
+import '../../FirebaseServices/providers/firbase_auth_handler.dart';
+import '../../FirebaseServices/providers/services_provider.dart';
 import '../../utils/app_colors.dart';
+import '../../utils/global_widgets.dart';
 import '../../widgets/global/my_elevated_button.dart';
 import '../main_screen.dart';
 
@@ -21,88 +26,20 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late String animationURL;
-  Artboard? _teddyArtboard;
-  SMITrigger? successTrigger, failTrigger;
-  SMIBool? isHandsUp, isChecking;
-  SMINumber? numLook;
+Logincontroller logincontroller=Logincontroller();
 
-  StateMachineController? stateMachineController;
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    animationURL = defaultTargetPlatform == TargetPlatform.android ||
-            defaultTargetPlatform == TargetPlatform.iOS
-        ? 'assets/animations/login.riv'
-        : 'animations/login.riv';
-    rootBundle.load(animationURL).then(
-      (data) {
-        final file = RiveFile.import(data);
-        final artboard = file.mainArtboard;
-        stateMachineController =
-            StateMachineController.fromArtboard(artboard, "Login Machine");
-        if (stateMachineController != null) {
-          artboard.addController(stateMachineController!);
 
-          stateMachineController!.inputs.forEach((e) {
-            debugPrint(e.runtimeType.toString());
-            debugPrint("name${e.name}End");
-          });
-
-          stateMachineController!.inputs.forEach((element) {
-            if (element.name == "trigSuccess") {
-              successTrigger = element as SMITrigger;
-            } else if (element.name == "trigFail") {
-              failTrigger = element as SMITrigger;
-            } else if (element.name == "isHandsUp") {
-              isHandsUp = element as SMIBool;
-            } else if (element.name == "isChecking") {
-              isChecking = element as SMIBool;
-            } else if (element.name == "numLook") {
-              numLook = element as SMINumber;
-            }
-          });
-        }
-
-        setState(() => _teddyArtboard = artboard);
-      },
-    );
-  }
-
-  void handsOnTheEyes() {
-    isHandsUp?.change(true);
-  }
-
-  void lookOnTheTextField() {
-    isHandsUp?.change(false);
-    isChecking?.change(true);
-    numLook?.change(0);
-  }
-
-  void moveEyeBalls(val) {
-    print(val);
-    numLook?.change(val.length.toDouble());
-  }
-
-  void login() {
-    isChecking?.change(false);
-    isHandsUp?.change(false);
-    if (_emailController.text == "admin" &&
-        _passwordController.text == "admin") {
-      successTrigger?.fire();
-    } else {
-      failTrigger?.fire();
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Color(0xffd6e2ea),
+        backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -115,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Image(
                     image: AssetImage('assets/images/company_logo.png'),
-                    height: 80,
+                    height: 100,
                   ),
                   SizedBox(
                     height: 30,
@@ -129,23 +66,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (_teddyArtboard != null && false)
-                          Container(
-                            padding: EdgeInsets.only(top: 70),
-                            child: SizedBox(
-                              width: 300,
-                              height: 150,
-                              child: Rive(
-                                artboard: _teddyArtboard!,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
+
                         TextField(
-                          controller: _emailController,
-                          onTap: lookOnTheTextField,
-                          onChanged: moveEyeBalls,
-              
+                          controller: logincontroller.email_Controller,
                           decoration: InputDecoration(
                             fillColor: Colors.white,
                             prefixIcon: Icon(Icons.email_outlined,size: 25,),
@@ -182,8 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 10,
                         ),
                         TextField(
-                          controller: _passwordController,
-                          onTap: handsOnTheEyes,
+                          controller: logincontroller.password_Controller,
                           keyboardType: TextInputType.visiblePassword,
                           obscureText: true,
                           decoration: InputDecoration(
@@ -250,12 +172,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             bg_color: MyAppColor.primary_color,
                             fontWeight: FontWeight.w600,
                             onPressed: () {
-                                Navigator.pushNamed(context, MainScreen.routePath);
+                              loginUserAccount();
                             }),
                         SizedBox(
                           height: 10,
                         ),
-              
+
                         Text(
                           "OR",
                           textAlign: TextAlign.end,
@@ -269,18 +191,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: 10,
                         ),
-              
-              
+
+
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, RegisterScreen.routePath);
+                          },
                           style: ElevatedButton.styleFrom(
                             minimumSize: Size(double.infinity, 55),
                             side: BorderSide(
                                 color: MyAppColor.primary_color), // Border color
                             // Customize other button appearance here
-              
+
                             // backgroundColor: Color(0xffd6e2ea),
-              
+
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -295,7 +220,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               SizedBox(width: 10,),
                               Text(
-                                "Login with Google",
+                                "Create Account ",
                                 style: TextStyle(
                                   color: MyAppColor.primary_color,
                                   fontWeight: FontWeight.w600,
@@ -341,4 +266,38 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+void loginUserAccount()  async {
+  if(logincontroller.isValid()!="true"){
+    String input_error=logincontroller.isValid();
+    showToast(input_error, ContentType.failure,context);
+
+  }else{
+    Map<String,String> login_data=logincontroller.getUserData();
+    showProgressBar(context,'LOGIN');
+    String auth_response=await Provider.of<FirebaseAuthHandler>(context,listen: false).signInWithEmailAndPassword(login_data['email']!,login_data['password']!);
+    if(auth_response=='login'){
+
+      showToast("You Login Successfully ...!", ContentType.success,context);
+
+      Provider.of<ServiceProvider>(context,listen: false).fetchProducts();
+      Provider.of<ServiceProvider>(context,listen: false).fetchUserDetails();
+      Provider.of<ServiceProvider>(context,listen: false).fetchBookings();
+      Provider.of<ServiceProvider>(context,listen: false).fetchServices();
+
+      Navigator.pop(context);
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        MainScreen.routePath,
+            (route) => false,
+      );
+    } else{
+      Navigator.pop(context);
+      showToast(auth_response, ContentType.failure,context);
+    }
+
+
+  }
+
+}
+
 }

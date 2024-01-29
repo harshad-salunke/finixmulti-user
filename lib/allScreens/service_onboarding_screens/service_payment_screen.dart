@@ -32,79 +32,82 @@ class _ServicePaymentScreenState extends State<ServicePaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff7f7f7),
 
-      body: Container(
-
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20))
+      body: SafeArea(
+        child: Container(
+        
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20))
+          ),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              OnBoardingAppbar(
+                title: 'Payment Method',
+                currentPage: 4,),
+               SizedBox(
+                 height: 10,
+               ),
+               Expanded(
+                 child: Container(
+                 decoration: BoxDecoration(
+                 color: Colors.white,
+        
+                 borderRadius: BorderRadius.only(topRight: Radius.circular(40),topLeft: Radius.circular(40))
         ),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 50,
-            ),
-            OnBoardingAppbar(
-              title: 'Payment Method',
-              currentPage: 4,),
-             SizedBox(
-               height: 10,
-             ),
-             Expanded(
-               child: Container(
-               decoration: BoxDecoration(
-               color: Colors.white,
-
-               borderRadius: BorderRadius.only(topRight: Radius.circular(40),topLeft: Radius.circular(40))
-      ),
-
-                 child: Column(
-
-                   children: [
-                     SizedBox(
-                       height: 10,
-                     ),
-                     Center(
-                       child: Container(
-                         height: 3,
-                         width: 50,
-                         decoration: BoxDecoration(
-                           borderRadius: BorderRadius.circular(20),
-                           color: MyAppColor.black_light,
-
+        
+                   child: Column(
+        
+                     children: [
+                       SizedBox(
+                         height: 10,
+                       ),
+                       Center(
+                         child: Container(
+                           height: 3,
+                           width: 50,
+                           decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(20),
+                             color: MyAppColor.black_light,
+        
+                           ),
                          ),
                        ),
-                     ),
-                     SizedBox(height: 5,),
-                     PaymentMethodNavbar(
-                       callback: (index){
-                         pageController.jumpToPage(index);
-                       },
-                       current: currentpage,
-                     ),
-                     Expanded(
-                       child: PageView(
-                         controller:pageController,
-                         onPageChanged: (index){
-                           setState(() {
-                             currentpage=index;
-                           });
+                       SizedBox(height: 5,),
+                       PaymentMethodNavbar(
+                         callback: (index){
+                           pageController.jumpToPage(index);
                          },
-                         children: [
-                           OnlinePaymentScreen(),
-                           OfflinePaymentScreen(),
-                         ],
+                         current: currentpage,
                        ),
-                     ),
-                   ],
+                       Expanded(
+                         child: PageView(
+                           controller:pageController,
+                           onPageChanged: (index){
+                             setState(() {
+                               currentpage=index;
+                             });
+                           },
+                           children: [
+                             OnlinePaymentScreen(
+
+                             ),
+                             OfflinePaymentScreen(),
+                           ],
+                         ),
+                       ),
+                     ],
+                   ),
                  ),
-               ),
-             )
-
-
-
-
-          ],
+               )
+        
+        
+        
+        
+            ],
+          ),
         ),
       ),
     );

@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/app_colors.dart';
 class ProgressDialog extends StatelessWidget {
-  const ProgressDialog({Key? key}) : super(key: key);
+  String text;
+   ProgressDialog({required this.text}) ;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class ProgressDialog extends StatelessWidget {
             ),
             SizedBox(width: 5,),
             Text(
-              'LOADING . .',
+              '${text} . .',
               style: GoogleFonts.ubuntu(
                 color:MyAppColor.golden_color,
                 fontSize: 14,

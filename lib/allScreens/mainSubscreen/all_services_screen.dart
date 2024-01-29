@@ -20,7 +20,6 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
   int currentpage=0;
   @override
   void initState() {
-    Provider.of<ServiceProvider>(context,listen: false).fetchProducts();
     pageController=PageController(initialPage: 0);
     super.initState();
   }
@@ -62,11 +61,8 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
                 });
               },
               children: [
-
                 ProductsScreen(),
-
                 ServicesSreen()
-
               ],
             ),
           ),

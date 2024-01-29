@@ -1,11 +1,13 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:finixmulti_user/FirebaseServices/firebase_database_dao.dart';
 import 'package:finixmulti_user/FirebaseServices/providers/firbase_auth_handler.dart';
+import 'package:finixmulti_user/FirebaseServices/providers/services_provider.dart';
 import 'package:finixmulti_user/Models/UserModle.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:finixmulti_user/textController/RegistrationController.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/global_widgets.dart';
 import '../../widgets/global/drop_downlist.dart';
@@ -45,19 +47,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   Image(
                     image: AssetImage('assets/images/company_logo.png'),
-                    height: 80,
+                    height: 100,
                   ),
                   Text(
                     'Create account to \n get started',
                     style: GoogleFonts.firaSansExtraCondensed(
                       color: Colors.black,
-                      fontSize: 35,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
 
                   SizedBox(
-                    height: 30,
+                    height: 25,
                   ),
 
                   Container(
@@ -246,7 +248,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           height: 10,
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+
+                          },
                           style: ElevatedButton.styleFrom(
                             minimumSize: Size(double.infinity, 55),
                             side: BorderSide(
@@ -271,7 +276,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 width: 10,
                               ),
                               Text(
-                                "Sing-Up with Google",
+                                "Login Now",
                                 style: TextStyle(
                                   color: MyAppColor.primary_color,
                                   fontWeight: FontWeight.w600,
@@ -316,41 +321,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  void showToast(String discription, ContentType contentType) async {
-    final snackBar = getMySnackBar('Hii , there!', discription, contentType);
 
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(snackBar);
-  }
 
-  void showProgressBar(BuildContext context){
-    showDialog(
-        context: context,
-        barrierDismissible: false, // Prevent dismissing by tapping outside
-        builder: (BuildContext context) {
-          return ProgressDialog();
-        });
-  }
-
-  createUserAccount()  async {
+ void createUserAccount()  async {
     if(registrationController.isValid()!="true"){
-
       String input_error=registrationController.isValid();
-      showToast(input_error, ContentType.failure);
+      showToast(input_error, ContentType.failure,context);
 
     }else{
       UserModel usermodle=registrationController.getUserData();
-      showProgressBar(context);
-      String auth_response=await firebaseAuthHandler.signUpWithEmailAndPassword(usermodle);
+      showProgressBar(context,'CREATING');
+      String auth_response=await  Provider.of<FirebaseAuthHandler>(context,listen: false).signUpWithEmailAndPassword(usermodle);
+
       if(auth_response=='created'){
-        await FirebaseDatabaseDAO.saveUserDetails(usermodle);
+
+        await Provider.of<ServiceProvider>(context,listen: false).saveUserDetails(usermodle);
         Navigator.pop(context);
-        print(usermodle.toJson());
-        showToast("Account Successfully Created ...!", ContentType.success);
+        showToast("Account Successfully Created ...!", ContentType.success,context);
+
+        Provider.of<ServiceProvider>(context,listen: false).fetchProducts();
+        Provider.of<ServiceProvider>(context,listen: false).fetchUserDetails();
+        Provider.of<ServiceProvider>(context,listen: false).fetchBookings();
+        Provider.of<ServiceProvider>(context,listen: false).fetchServices();
+
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          MainScreen.routePath,
+              (route) => false,
+        );
+
       }else{
         Navigator.pop(context);
-        showToast(auth_response, ContentType.failure);
+        showToast(auth_response, ContentType.failure,context);
       }
 
 

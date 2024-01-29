@@ -1,10 +1,15 @@
+import 'package:finixmulti_user/FirebaseServices/providers/firbase_auth_handler.dart';
 import 'package:finixmulti_user/allScreens/mainSubscreen/booking_screen.dart';
 import 'package:finixmulti_user/allScreens/mainSubscreen/home_screen.dart';
 import 'package:finixmulti_user/allScreens/mainSubscreen/all_services_screen.dart';
 import 'package:finixmulti_user/allScreens/mainSubscreen/profile_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:popup_banner/popup_banner.dart';
+import 'package:provider/provider.dart';
 
+import '../FirebaseServices/providers/services_provider.dart';
 import '../utils/app_colors.dart';
 class MainScreen extends StatefulWidget {
   static final String routePath="/mainscreen";
@@ -15,13 +20,24 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  List<String> images = [
+    "https://tinyurl.com/popup-banner-image",
+    "https://tinyurl.com/popup-banner-image2",
+    "https://tinyurl.com/popup-banner-image3",
+    "https://tinyurl.com/popup-banner-image4"
+  ];
+
    late  PageController pageController;
+   FirebaseAuth firebaseAuth=FirebaseAuth.instance;
   int currentPage=0;
   @override
   void initState() {
-    // TODO: implement initState
     pageController=PageController(initialPage: 0);
     super.initState();
+
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      showDefaultPopup();
+    });
   }
   @override
   void dispose() {
@@ -31,6 +47,7 @@ class _MainScreenState extends State<MainScreen> {
   }
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Color(0xfff7f7f7),
 
@@ -43,9 +60,30 @@ class _MainScreenState extends State<MainScreen> {
             });
           },
           children: [
-            HomeScreen(),
+            HomeScreen(
+              isBooknowBtnClick:(){
+                setState(() {
+                  pageController.jumpToPage(1);
+
+                });
+              },
+                isProfileBtnClick: (){
+                  setState(() {
+                    pageController.jumpToPage(3);
+
+                  });
+                },
+            ),
             AllServicesScreen(),
-            BookingScreen(),
+            BookingScreen(
+                isBooknowBtnClick:(){
+                  setState(() {
+                    pageController.jumpToPage(1);
+
+                  });
+
+                }
+            ),
             ProfileScreen()
           ],
         ),
@@ -53,7 +91,6 @@ class _MainScreenState extends State<MainScreen> {
 
       bottomNavigationBar: Container(
         color: Colors.white,
-
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.0,vertical: 20),
           child: GNav(
@@ -89,5 +126,14 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
     );
+  }
+  void showDefaultPopup() {
+    PopupBanner(
+      context: context,
+      images: images,
+      onClick: (index) {
+        debugPrint("CLICKED $index");
+      },
+    ).show();
   }
 }

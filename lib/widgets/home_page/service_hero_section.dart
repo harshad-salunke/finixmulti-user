@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../FirebaseServices/api_request/assistanceMethods.dart';
+
 class ServiceHeroSection extends StatelessWidget {
-  const ServiceHeroSection({Key? key}) : super(key: key);
+  Function isBooknowBtnClick;
+   ServiceHeroSection({required this.isBooknowBtnClick}) ;
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +133,8 @@ class ServiceHeroSection extends StatelessWidget {
                 bg_color: MyAppColor.primary_color,
                 fontWeight: FontWeight.w100,
                 onPressed: (){
-                  print("Clicked");
+                  isBooknowBtnClick();
+
                 }),
           ),
         ],

@@ -27,7 +27,10 @@ class ProductDescription extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
             product.name,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: TextStyle(
+              fontFamily: 'brand-bold',
+              fontSize: 23
+            ),
           ),
         ),
         Align(
@@ -57,36 +60,13 @@ class ProductDescription extends StatelessWidget {
           padding: const EdgeInsets.only(
             left: 20,
             right: 64,
+            bottom: 20
           ),
           child: Text(
             product.des,
             maxLines: 3,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 12,
-          ),
-          child: GestureDetector(
-            onTap: () {},
-            child: const Row(
-              children: [
-                Text(
-                  "Read More",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600, color: Color(0xff9e0093)),
-                ),
-                SizedBox(width: 5),
-                Icon(
-                  Icons.arrow_drop_down,
-                  size: 25,
-                  color: Color(0xff9e0093),
-                ),
-              ],
-            ),
-          ),
-        )
       ],
     );
   }

@@ -39,16 +39,13 @@ static  FirebaseAuth firebaseAuth=FirebaseAuth.instance;
       }
     } catch (e) {
       return "Some Error Occurred";
-
-      print(e);
     }
     return "Some Error Occurred";
 
   }
 
-  Future<void> signInWithEmailAndPassword(String email,String password) async{
-    print("inside class"+email);
-    print("inside class"+password);
+  Future<String> signInWithEmailAndPassword(String email,String password) async{
+
     FirebaseAuth firebaseAuth=FirebaseAuth.instance;
     print(firebaseAuth.currentUser?.email);
     try {
@@ -56,10 +53,15 @@ static  FirebaseAuth firebaseAuth=FirebaseAuth.instance;
           email: email,
           password: password
       );
-
+      return 'login';
     } on FirebaseAuthException catch (e) {
-     print(e.message);
+     print("errer");
+     String error=e.code+' , Please check your email & password ..!';
+     return error;
+
     }
+    return "Some Error Occurred";
+
   }
 
 

@@ -2,7 +2,8 @@ import 'package:finixmulti_user/utils/app_colors.dart';
 import 'package:finixmulti_user/widgets/services_onboarding/payment_page/radiobutton_payment_card.dart';
 import 'package:flutter/material.dart';
 class SelectOfflinePaymentMethod extends StatefulWidget {
-  const SelectOfflinePaymentMethod({Key? key}) : super(key: key);
+  Function(String) selectedMethod;
+   SelectOfflinePaymentMethod({required this.selectedMethod});
 
   @override
   State<SelectOfflinePaymentMethod> createState() => _SelectOfflinePaymentMethodState();
@@ -37,6 +38,7 @@ class _SelectOfflinePaymentMethodState extends State<SelectOfflinePaymentMethod>
           itemBuilder: (context,index){
         return InkWell(
           onTap: (){
+            widget.selectedMethod(method_name[index]);
             setState(() {
               selected=index;
             });

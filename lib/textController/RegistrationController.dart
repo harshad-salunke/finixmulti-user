@@ -8,34 +8,58 @@ class RegistrationController {
   TextEditingController full_nameController = TextEditingController();
   TextEditingController email_Controller = TextEditingController();
   TextEditingController password_Controller = TextEditingController();
-  TextEditingController gender_Controller=TextEditingController();
+  TextEditingController gender_Controller = TextEditingController();
 
-  String isValid(){
-    if(full_nameController.text.isEmpty){
+  String isValid() {
+    if (full_nameController.text.isEmpty) {
       return "Please enter full name ...!";
     }
 
-    if(!email_Controller.text.endsWith("@gmail.com")){
+    if (!email_Controller.text.endsWith("@gmail.com")) {
       return "Please Enter Correct Email ...!";
     }
-    if(mobile_controller.text.length<10 || mobile_controller.text.length>10){
+    if (mobile_controller.text.length < 10 ||
+        mobile_controller.text.length > 10) {
       return "Please Enter Correct Mobile Number ...!";
     }
-    // if(password_Controller.text.length<){
-    //   return "Password Must Be At Least 6 Characters Long ...!";
-    // }
-    if(gender_Controller.text.isEmpty){
+    if (password_Controller.text.length < 6) {
+      return "Password Must Be At Least 6 Characters Long ...!";
+    }
+    if (gender_Controller.text.isEmpty) {
       return "Please Select You Gender ...!";
     }
     return "true";
   }
 
-
-  UserModel getUserData(){
-    return UserModel(phone_number: mobile_controller.text, name: full_nameController.text, uid: "", register_date: "", gender: gender_Controller.text, email: email_Controller.text, password: password_Controller.text,);
+  void setData(UserModel userModel) {
+    full_nameController.text = userModel.name;
+    email_Controller.text = userModel.email;
+    mobile_controller.text = userModel.phone_number;
+    password_Controller.text = userModel.password;
+    gender_Controller.text = userModel.gender;
   }
 
+  UserModel getUpdatedData(UserModel userModel) {
+    return UserModel(
+      phone_number: mobile_controller.text,
+      name: full_nameController.text,
+      uid: userModel.uid,
+      register_date: userModel.register_date,
+      gender: gender_Controller.text,
+      email: email_Controller.text,
+      password: password_Controller.text,
+    );
+  }
 
-
-
+  UserModel getUserData() {
+    return UserModel(
+      phone_number: mobile_controller.text,
+      name: full_nameController.text,
+      uid: "",
+      register_date: "",
+      gender: gender_Controller.text,
+      email: email_Controller.text,
+      password: password_Controller.text,
+    );
+  }
 }

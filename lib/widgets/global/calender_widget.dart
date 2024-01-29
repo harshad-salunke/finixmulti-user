@@ -5,7 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CalendarWidget extends StatefulWidget {
-
+  Function(String) selectedDate;
+  CalendarWidget({required this.selectedDate});
   @override
   _CalendarWidgetState createState() => _CalendarWidgetState();
 
@@ -15,7 +16,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   DateTime _focusedDay = DateTime.now();
 
   void _onDateSelected(DateTime day,DateTime focus){
-    print(day);
+    String formattedDate = DateFormat('dd-MM-yyyy').format(day);
+    widget.selectedDate(formattedDate);
+
     setState(() {
       _focusedDay=day;
     });
@@ -61,8 +64,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   InkWell(
                     onTap: () {
                       setState(() {
-                        _focusedDay =
-                            DateTime(_focusedDay.year, _focusedDay.month + 1);
+                        _focusedDay = DateTime(_focusedDay.year, _focusedDay.month + 1);
                       });
                     },
                     child: Card(
@@ -82,7 +84,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
           TableCalendar(
             focusedDay: _focusedDay,
             firstDay: DateTime.utc(_focusedDay.year),
-            lastDay: DateTime.utc(_focusedDay.year+1),
+            lastDay: DateTime.utc(2030),
             headerVisible: false,
               rowHeight: 55,
             onFormatChanged: (result) {

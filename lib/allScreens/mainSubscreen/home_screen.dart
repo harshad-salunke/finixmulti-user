@@ -6,10 +6,14 @@ import 'package:flutter/widgets.dart';
 
 import '../../widgets/home_page/heading_widget.dart';
 import '../../widgets/home_page/service_hero_section.dart';
+import '../../widgets/home_page/product_section.dart';
 import '../../widgets/home_page/service_section.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  Function isBooknowBtnClick;
+  Function isProfileBtnClick;
+
+  HomeScreen({required this.isBooknowBtnClick,required this.isProfileBtnClick}) ;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -26,11 +30,23 @@ class _HomeScreenState extends State<HomeScreen> {
     return  SingleChildScrollView(
         child: Column(
           children: [
-            HeadingWidget(),
+            HeadingWidget(
+                isProfileBtnClick:widget.isProfileBtnClick
+
+            ),
            SlidingBanner(),
-            ServiceSection(),
-            ServiceHeroSection(),
-            ServiceSection(),
+            ProductSection(
+                isBooknowBtnClick:widget.isBooknowBtnClick
+
+            ),
+            ServiceHeroSection(
+                isBooknowBtnClick:widget.isBooknowBtnClick
+            ),
+            ServiceSection(
+                isBooknowBtnClick:widget.isBooknowBtnClick
+
+            ),
+            SizedBox(height: 30,)
           ],
         ),
       );
