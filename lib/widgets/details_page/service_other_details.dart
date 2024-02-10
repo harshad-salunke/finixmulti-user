@@ -44,7 +44,7 @@ class _ServiceOtherBasicDetailsState extends State<ServiceOtherBasicDetails> {
                   children: [
                     Icon(Icons.verified_outlined,
                       color:Colors.green ,),
-                    Text("Varified",
+                    Text("verified",
                       style: GoogleFonts.openSans(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,

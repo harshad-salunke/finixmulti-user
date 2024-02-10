@@ -42,6 +42,8 @@ class _BookingCompletedState extends State<BookingCompleted> {
                   onTap: (){
                     serviceProvidr.setBookingData(completed_BookingList[index]);
                     getProductFromList(serviceProvidr.booking_list[index], serviceProvidr.product_list,serviceProvidr.service_list);
+                    Provider.of<ServiceProvider>(context,listen: false).setEmptyEmployee();
+
                     Navigator.pushNamed(context, BookingDetailsScreen.routePath);
                   },
                   child: BookingCard(

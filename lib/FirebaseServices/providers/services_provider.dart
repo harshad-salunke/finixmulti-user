@@ -3,6 +3,7 @@ import 'package:finixmulti_user/Models/employee.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../Models/booking_modle.dart';
+import '../../Models/offers_model.dart';
 import '../../Models/product.dart';
 import '../../Models/UserModle.dart';
 
@@ -30,6 +31,12 @@ class ServiceProvider extends ChangeNotifier {
       latitude: 0,
       longitude: 0);
 
+  OffersModel offersModelData = OffersModel(
+      serviceOffer: '',
+      inviteFriend: '',
+      productOffer: '',
+      imageEvent: []);
+
   List<Product> product_list = [];
   List<BookingModel> booking_list = [];
   List<Product> service_list = [];
@@ -42,6 +49,7 @@ class ServiceProvider extends ChangeNotifier {
   bool isAddressLoading = true;
   bool isBookingLoading = true;
   bool isEmplooyeeLoading=true;
+  bool isOfferLoading = true;
 
   late BookingModel bookingData;
   late String myAddressText;
@@ -49,6 +57,16 @@ class ServiceProvider extends ChangeNotifier {
   late Product selectedProduct;
 
   //get data from database
+  void featchOffers(){
+    firebaseDatabaseDAO.offerModelStream.listen((offer) {
+      offersModelData=offer;
+      isOfferLoading=false;
+      print("** offers ******************* ${offersModelData.toJson()}");
+      notifyListeners();
+
+    });
+    firebaseDatabaseDAO.featchOffersDetails();
+  }
 
   void fetchUserDetails() {
     firebaseDatabaseDAO.userStream.listen((user) {

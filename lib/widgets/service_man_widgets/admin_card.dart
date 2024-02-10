@@ -15,7 +15,15 @@ class AdminCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Consumer<ServiceProvider>(builder: (_,serviceProvider,__){
-      Employee employee=serviceProvider.employeeData;
+      Employee employee = Employee(
+          name: 'Help Center',
+          uid: '',
+          email: '',
+          password: '',
+          profile: 'assets/images/operator.png',
+          phone_number: '9172692702',
+          latitude: 0,
+          longitude: 0);
       return Column(
         children: [
           RichText(

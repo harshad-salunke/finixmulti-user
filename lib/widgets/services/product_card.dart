@@ -173,7 +173,7 @@ class ProductCard extends StatelessWidget {
                       color: Colors.green,
                     ),
                     Text(
-                      "Varified",
+                      "verified",
                       style: GoogleFonts.openSans(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,

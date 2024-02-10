@@ -28,10 +28,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     if(firebaseAuth.currentUser?.uid!=null){
-      Provider.of<ServiceProvider>(context,listen: false).fetchProducts();
+      Provider.of<ServiceProvider>(context,listen: false).featchOffers();
       Provider.of<ServiceProvider>(context,listen: false).fetchUserDetails();
-      Provider.of<ServiceProvider>(context,listen: false).fetchBookings();
+      Provider.of<ServiceProvider>(context,listen: false).fetchProducts();
       Provider.of<ServiceProvider>(context,listen: false).fetchServices();
+      Provider.of<ServiceProvider>(context,listen: false).fetchBookings();
 
     }else{
       print('user not login');

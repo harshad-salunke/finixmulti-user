@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 import '../Models/employee.dart';
+import '../Models/offers_model.dart';
 import '../Models/product.dart';
 import 'package:intl/intl.dart';
 
@@ -34,6 +35,10 @@ class FirebaseDatabaseDAO {
    StreamController<List<Product>> _serviceController = StreamController<List<Product>>.broadcast();
    Stream<List<Product>> get serviceStream => _serviceController.stream;
 
+
+   StreamController<OffersModel> _offerModelController=StreamController<OffersModel>.broadcast();
+   Stream<OffersModel> get offerModelStream=>_offerModelController.stream;
+
     // getting data from database
    void  fetchUserDetails() {
      String current_user_uid=firebaseAuth.currentUser!.uid;
@@ -52,17 +57,30 @@ class FirebaseDatabaseDAO {
    }
 
    void  fetchEmployeeDetails(String employeeUid) {
-     databaseReference.child('Employees').child(employeeUid).get().then((snapshot){
-       if (snapshot.value != null) {
+     databaseReference.child('Employees').child(employeeUid).get().then((snapshot) {
+       if(snapshot.value!=null){
          Map values = snapshot.value as Map;
          Employee employeeModel=Employee.fromJson(values);
+         print('lisening');
+         _employeeController.add(employeeModel);
+       }
+     });
+
+   }
+
+   void  fetchServiceManLocatoinDetails(String employeeUid) {
+     databaseReference.child('Employees').child(employeeUid).onValue.listen((event) {
+       if(event.snapshot.value!=null){
+         Map values = event.snapshot.value as Map;
+         Employee employeeModel=Employee.fromJson(values);
+         print('lisening');
          _employeeController.add(employeeModel);
        }
 
      });
 
-
    }
+
 
 
    void  fetchProducts() {
@@ -134,6 +152,24 @@ class FirebaseDatabaseDAO {
        }
      });
 
+   }
+   void featchOffersDetails(){
+     String path='Offers/current';
+     databaseReference.child(path).get().then((snapshot){
+       if(snapshot.value!=null){
+         Map data=snapshot.value as Map<dynamic,dynamic>;
+         OffersModel offersModel=OffersModel.fromJson(data);
+         _offerModelController.add(offersModel);
+       }else{
+         OffersModel offersModelData = OffersModel(
+             serviceOffer: '',
+             inviteFriend: '',
+             productOffer: '',
+             imageEvent: []);
+         _offerModelController.add(offersModelData);
+
+       }
+     });
    }
 
 

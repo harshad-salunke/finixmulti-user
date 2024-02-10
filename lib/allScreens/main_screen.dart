@@ -1,4 +1,5 @@
 import 'package:finixmulti_user/FirebaseServices/providers/firbase_auth_handler.dart';
+import 'package:finixmulti_user/Models/offers_model.dart';
 import 'package:finixmulti_user/allScreens/mainSubscreen/booking_screen.dart';
 import 'package:finixmulti_user/allScreens/mainSubscreen/home_screen.dart';
 import 'package:finixmulti_user/allScreens/mainSubscreen/all_services_screen.dart';
@@ -36,6 +37,7 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
 
     WidgetsBinding.instance?.addPostFrameCallback((_) {
+
       showDefaultPopup();
     });
   }
@@ -128,12 +130,20 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
   void showDefaultPopup() {
-    PopupBanner(
-      context: context,
-      images: images,
-      onClick: (index) {
-        debugPrint("CLICKED $index");
-      },
-    ).show();
+    bool isOfferLoading=Provider.of<ServiceProvider>(context,listen: false).isOfferLoading;
+    OffersModel offersModel=Provider.of<ServiceProvider>(context,listen: false).offersModelData;
+    if(!isOfferLoading){
+      if(offersModel.imageEvent.length>0){
+        PopupBanner(
+          context: context,
+          images: offersModel.imageEvent,
+          onClick: (index) {
+            debugPrint("CLICKED $index");
+          },
+        ).show();
+
+      }
+    }
+
   }
 }

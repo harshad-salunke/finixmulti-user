@@ -111,30 +111,30 @@ late ServiceProvider mainserviceProvider;
 
   void makePayment() async {
 
-    showAlertDialog(context, "Available Soon !",
-        "Hii ${mainserviceProvider.userData.name } , Currently Online Payment Option Is Unavailable , You Can Go With Offline Payment Option.");
-    // Product selected=mainserviceProvider.selectedProduct;
-    // mainserviceProvider.bookingData.paymentOption='online';
-    // mainserviceProvider.bookingData.paymentMethod='UPI';
-    //
-    // UserModel userModel=mainserviceProvider.userData;
-    //
-    // int final_ammount=selected.disPrice*100;
-    // var options = {
-    //   'key': 'rzp_test_DDDjy3Dnb4MdpS',
-    //   'amount': final_ammount,
-    //   'name': 'Finixmulti Electrical',
-    //   'description': 'Easy payment',
-    //   'theme': {'color': '#9e0093'},
-    //   'prefill': {
-    //     'contact': '+91${userModel.phone_number}',
-    //     'email': '${userModel.email}'
-    //   },
-    // };
-    //
-    // try {
-    //   razorpay.open(options);
-    // } catch (e) {}
+    // showAlertDialog(context, "Available Soon !",
+    //     "Hii ${mainserviceProvider.userData.name } , Currently Online Payment Option Is Unavailable , You Can Go With Offline Payment Option.");
+    Product selected=mainserviceProvider.selectedProduct;
+    mainserviceProvider.bookingData.paymentOption='online';
+    mainserviceProvider.bookingData.paymentMethod='UPI';
+
+    UserModel userModel=mainserviceProvider.userData;
+
+    int final_ammount=selected.disPrice*100;
+    var options = {
+      'key': 'rzp_test_DDDjy3Dnb4MdpS',
+      'amount': final_ammount,
+      'name': 'Finixmulti Electrical',
+      'description': 'Easy payment',
+      'theme': {'color': '#9e0093'},
+      'prefill': {
+        'contact': '+91${userModel.phone_number}',
+        'email': '${userModel.email}'
+      },
+    };
+
+    try {
+      razorpay.open(options);
+    } catch (e) {}
   }
 
   //Handle Payment Responses

@@ -41,6 +41,8 @@ class _BookingActivePageState extends State<BookingActivePage> {
                   onTap: (){
                     serviceProvidr.setBookingData(active_BookingList[index]);
                     getProductFromList(serviceProvidr.booking_list[index], serviceProvidr.product_list,serviceProvidr.service_list);
+                    Provider.of<ServiceProvider>(context,listen: false).setEmptyEmployee();
+
                     Navigator.pushNamed(context, BookingDetailsScreen.routePath);
                   },
                   child: BookingCard(

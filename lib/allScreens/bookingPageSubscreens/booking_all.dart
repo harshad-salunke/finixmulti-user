@@ -35,6 +35,8 @@ class _BookingAllState extends State<BookingAll> {
                   onTap: (){
                     serviceProvider.setBookingData(serviceProvider.booking_list[index]);
                     getProductFromList(serviceProvider.booking_list[index], serviceProvider.product_list,serviceProvider.service_list);
+                    Provider.of<ServiceProvider>(context,listen: false).setEmptyEmployee();
+
                     Navigator.pushNamed(context, BookingDetailsScreen.routePath);
                   },
                   child: BookingCard(

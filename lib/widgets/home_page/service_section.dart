@@ -56,7 +56,7 @@ class _ServiceSectionState extends State<ServiceSection> {
                 ListView.builder(
                   padding: EdgeInsets.zero,
                   scrollDirection: Axis.horizontal,
-                  itemCount: serviceProvider.service_list.length>4?4:serviceProvider.product_list.length,
+                  itemCount: serviceProvider.service_list.length>4?4:serviceProvider.service_list.length,
                   itemBuilder: (BuildContext con, int index) {
                     return InkWell(
                       onTap: (){

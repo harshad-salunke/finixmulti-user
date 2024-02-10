@@ -280,10 +280,11 @@ void loginUserAccount()  async {
 
       showToast("You Login Successfully ...!", ContentType.success,context);
 
-      Provider.of<ServiceProvider>(context,listen: false).fetchProducts();
+      Provider.of<ServiceProvider>(context,listen: false).featchOffers();
       Provider.of<ServiceProvider>(context,listen: false).fetchUserDetails();
-      Provider.of<ServiceProvider>(context,listen: false).fetchBookings();
+      Provider.of<ServiceProvider>(context,listen: false).fetchProducts();
       Provider.of<ServiceProvider>(context,listen: false).fetchServices();
+      Provider.of<ServiceProvider>(context,listen: false).fetchBookings();
 
       Navigator.pop(context);
       Navigator.of(context).pushNamedAndRemoveUntil(

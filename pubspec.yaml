@@ -55,6 +55,7 @@ dependencies:
   confetti: ^0.7.0
   flutter_polyline_points: ^2.0.0
   popup_banner: ^1.0.0
+  image: ^4.1.6
 
 dev_dependencies:
   flutter_test:
