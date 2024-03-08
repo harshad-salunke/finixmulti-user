@@ -47,7 +47,7 @@ int currentpage=0;
           SizedBox(height: 10,),
           Text("Bookings",
           style: GoogleFonts.openSans(
-            fontSize: 25,
+            fontSize: 22,
             fontWeight: FontWeight.bold
           ),),
           BookingNavBar(

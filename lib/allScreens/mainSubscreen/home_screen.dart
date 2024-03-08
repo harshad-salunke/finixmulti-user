@@ -34,7 +34,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 isProfileBtnClick:widget.isProfileBtnClick
 
             ),
-           SlidingBanner(),
+           SlidingBanner(
+               isBooknowBtnClick:widget.isBooknowBtnClick
+
+           ),
             ProductSection(
                 isBooknowBtnClick:widget.isBooknowBtnClick
 

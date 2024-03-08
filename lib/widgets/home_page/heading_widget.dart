@@ -32,7 +32,7 @@ class _HeadingWeidgetState extends State<HeadingWidget> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
+              padding: EdgeInsets.fromLTRB(18, 10, 18, 20),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -79,7 +79,7 @@ class _HeadingWeidgetState extends State<HeadingWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
+              padding: EdgeInsets.fromLTRB(18, 0, 18, 20),
               child: Row(
                 children: [
                   Expanded(
@@ -94,7 +94,7 @@ class _HeadingWeidgetState extends State<HeadingWidget> {
 
                         contentPadding: EdgeInsets.symmetric(
                           vertical: 17,
-                          horizontal: 10,
+                          horizontal: 12,
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -113,9 +113,15 @@ class _HeadingWeidgetState extends State<HeadingWidget> {
                     ),
                     margin: EdgeInsets.only(left: 10),
                     padding: EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.format_line_spacing_sharp,
-                      color: Colors.white,
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, SearchScreen.routePath);
+                      },
+                      child: Icon(
+
+                        Icons.format_line_spacing_sharp,
+                        color: Colors.white,
+                      ),
                     ),
                   )
                 ],

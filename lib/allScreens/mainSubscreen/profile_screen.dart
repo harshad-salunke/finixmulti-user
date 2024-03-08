@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:finixmulti_user/FirebaseServices/firebase_database_dao.dart';
 import 'package:finixmulti_user/FirebaseServices/providers/firbase_auth_handler.dart';
 import 'package:finixmulti_user/allScreens/login_screens/login_screen.dart';
 import 'package:finixmulti_user/allScreens/profile_related_screens/notification_screen.dart';
@@ -12,7 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 import '../../FirebaseServices/providers/services_provider.dart';
 import '../../utils/global_widgets.dart';
@@ -153,6 +154,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
         InkWell(
           child: colorTile(Icons.add_reaction, Colors.green, "Invite Friends"),
           onTap: () async {
+            String msg ="Hey there! 👋 I'm excited to share something valuable with you!"
+                " 🌟 Have you ever needed reliable electrical services in Pune and nearby areas?"
+                "Check out *Finixmulti Electrical* app ! Get high-quality solutions for maintenance, installation, and more."
+                "Download now: https://play.google.com/store/apps/details?id=com.harshad.finixmulti_user ⚡️.";
+            final result = await Share.shareWithResult(msg);
+
+            if (result.status == ShareResultStatus.success) {
+              showToast('Thank you for sharing Finixmulti Electrical!', ContentType.success,context);
+
+            }
 
           },
         ),
@@ -183,7 +194,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget bwTiles() {
     return Column(
       children: [
-        bwTile(Icons.star_rate_outlined, "Rate Us"),
+        InkWell(
+          onTap: (){
+            _launchPlayStore();
+
+          },
+            child: bwTile(Icons.star_rate_outlined, "Rate Us")),
         InkWell(
             onTap: () {
               exit(0);
@@ -230,7 +246,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void _launchPhoneCall() async {
-    String phoneNumber = 'tel:+919172692702'; // Replace with the desired phone number
+    String phoneNumber = 'tel:+918007453007'; // Replace with the desired phone number
     if (await canLaunch(phoneNumber)) {
       await launch(phoneNumber);
     } else {
@@ -238,6 +254,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
       print('Could not launch $phoneNumber');
     }
   }
+
+  void _launchPlayStore() async {
+    const String url = 'https://play.google.com/store/apps/details?id=com.harshad.finixmulti_user';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
 
 
 }

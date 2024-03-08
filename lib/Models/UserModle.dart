@@ -6,11 +6,13 @@ class UserModel {
   String uid;
   String register_date;
   String gender;
+  bool isblock;
 
   UserModel({
     required this.phone_number,
     required this.name,
     required this.uid,
+    required this.isblock,
     required this.register_date,
     required this.gender,
     required this.email,
@@ -23,6 +25,7 @@ class UserModel {
       phone_number: json['phone_number'],
       name: json['name'],
       uid: json['uid'],
+      isblock: json['isblock']??false,
       register_date: json['register_date'],
       gender: json['gender'],
       email: json['email']  ,
@@ -37,6 +40,7 @@ class UserModel {
       'uid': uid,
       'register_date': register_date,
       'gender': gender,
+      'isblock':isblock,
       'email': email,
       'password': password,
     };

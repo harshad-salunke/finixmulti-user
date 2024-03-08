@@ -21,7 +21,7 @@ class AdminCard extends StatelessWidget {
           email: '',
           password: '',
           profile: 'assets/images/operator.png',
-          phone_number: '9172692702',
+          phone_number: '8007453007',
           latitude: 0,
           longitude: 0);
       return Column(

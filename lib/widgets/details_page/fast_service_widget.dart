@@ -260,7 +260,7 @@ class _OtherBasicDetailsState extends State<OtherBasicDetails> {
                                     fontWeight: FontWeight.w700),
                               ),
                               Text(
-                                "1 year Manufacture",
+                                "${widget.product.warranty} Manufacture",
                                 style: GoogleFonts.ubuntu(
                                   fontSize: 15,
                                 ),

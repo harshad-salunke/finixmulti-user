@@ -14,6 +14,7 @@ class ServiceProvider extends ChangeNotifier {
 
   late UserModel userData = UserModel(
       phone_number: '',
+      isblock:false,
       name: '',
       uid: '',
       register_date: '',
@@ -27,7 +28,7 @@ class ServiceProvider extends ChangeNotifier {
       email: '',
       password: '',
       profile: 'assets/images/operator.png',
-      phone_number: '9172692702',
+      phone_number: '8007453007',
       latitude: 0,
       longitude: 0);
 
@@ -177,7 +178,7 @@ class ServiceProvider extends ChangeNotifier {
         email: '',
         password: '',
         profile: 'assets/images/operator.png',
-        phone_number: '9172692702',
+        phone_number: '8007453007',
         latitude: 0,
         longitude: 0);
     isEmplooyeeLoading=true;

@@ -28,6 +28,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   RegistrationController registrationController = RegistrationController();
   FirebaseAuthHandler firebaseAuthHandler=FirebaseAuthHandler();
+  bool _passwordVisible=true;
   var gender_list=[
     "Male",
     "Female",
@@ -174,7 +175,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         TextField(
                           controller: registrationController.password_Controller,
                           keyboardType: TextInputType.visiblePassword,
-                          obscureText: true,
+                          obscureText: _passwordVisible,
                           decoration: InputDecoration(
                             hintText: "Enter Password",
                             labelText: "Password",
@@ -183,9 +184,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               Icons.lock,
                               size: 25,
                             ),
-                            suffixIcon: Icon(
-                              Icons.remove_red_eye_outlined,
-                              size: 25,
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _passwordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _passwordVisible = !_passwordVisible;
+                                });
+                              },
                             ),
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 22, horizontal: 15),

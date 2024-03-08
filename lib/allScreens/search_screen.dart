@@ -62,13 +62,16 @@ class _SearchScreenState extends State<SearchScreen> {
                               productList.clear();
                               serviceList.clear();
                               serviceProvider.product_list.forEach((product) {
-                                if(product.name.contains(text)){
+                                String name=product.name.toLowerCase();
+                                if(name.contains(text.toLowerCase())){
                                   productList.add(product);
                                 }
                               });
 
                               serviceProvider.service_list.forEach((product) {
-                                if(product.name.contains(text)){
+                                String name=product.name.toLowerCase();
+
+                                if(name.contains(text.toLowerCase())){
                                   serviceList.add(product);
                                 }
                               });

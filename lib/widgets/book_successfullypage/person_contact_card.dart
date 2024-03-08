@@ -40,7 +40,7 @@ class PersonContactCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Harshad Salunke",
+                  Text("Help Center",
                     style: GoogleFonts.openSans(
                         fontSize: 16,
                         fontWeight: FontWeight.w700
@@ -136,7 +136,7 @@ openWhatsApp();
     );
   }
   void _launchPhoneCall() async {
-    const phoneNumber = 'tel:+919172692702'; // Replace with the desired phone number
+    const phoneNumber = 'tel:+918007453007'; // Replace with the desired phone number
     if (await canLaunch(phoneNumber)) {
       await launch(phoneNumber);
     } else {
@@ -145,7 +145,7 @@ openWhatsApp();
     }
   }
   void openWhatsApp() async {
-    String phoneNumber = '9172692702';
+    String phoneNumber = '8007453007';
 
     String message = 'Hello , I am Harshad Salunke user of Finixmulti app' ;
 

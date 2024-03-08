@@ -19,7 +19,7 @@ class _ServicesNavBarState extends State<ServicesNavBar> {
   Widget build(BuildContext context) {
     current=widget.current;
     return  Container(
-      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+      margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
         color: MyAppColor.white_light,
@@ -51,6 +51,7 @@ class _ServicesNavBarState extends State<ServicesNavBar> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.shopping_cart_outlined,
+                      size: 20,
                       color:current==0? MyAppColor.primary_color:MyAppColor.black_light,
 
                     ),
@@ -62,7 +63,7 @@ class _ServicesNavBarState extends State<ServicesNavBar> {
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           color:current==0? MyAppColor.primary_color:MyAppColor.black_light,
-                          fontSize: 16
+                          fontSize: 14
                       ),
 
                     )
@@ -95,6 +96,8 @@ class _ServicesNavBarState extends State<ServicesNavBar> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.home_repair_service,
+                      size: 20,
+
                       color:current==1? MyAppColor.primary_color:MyAppColor.black_light,
 
                     ),
@@ -106,7 +109,7 @@ class _ServicesNavBarState extends State<ServicesNavBar> {
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           color:current==1? MyAppColor.primary_color:MyAppColor.black_light,
-                          fontSize: 16
+                          fontSize: 14
                       ),
 
                     )

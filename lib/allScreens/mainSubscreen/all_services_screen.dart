@@ -39,7 +39,7 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
           SizedBox(height: 10,),
           Text("Services",
             style: TextStyle(
-                fontSize: 25,
+                fontSize: 22,
                 fontWeight: FontWeight.bold,
               fontFamily: "Brand-Bold"
 

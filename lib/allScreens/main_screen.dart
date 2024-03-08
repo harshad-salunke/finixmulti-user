@@ -66,7 +66,6 @@ class _MainScreenState extends State<MainScreen> {
               isBooknowBtnClick:(){
                 setState(() {
                   pageController.jumpToPage(1);
-
                 });
               },
                 isProfileBtnClick: (){

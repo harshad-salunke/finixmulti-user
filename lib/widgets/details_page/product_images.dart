@@ -3,6 +3,7 @@ import 'package:finixmulti_user/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../Models/product.dart';
+import '../../allScreens/FullScreenImage.dart';
 
 
 
@@ -25,18 +26,24 @@ class _ProductImagesState extends State<ProductImages> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          width: 238,
-          child: AspectRatio(
-            aspectRatio: 1,
-            child: CachedNetworkImage(
-              imageUrl:widget.product.imgUri[selectedImage],
-              placeholder: (context, url) => Image.asset(
-                "assets/images/newlogo.png", // Replace with your loading image
+        InkWell(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>FullScreenImage(imageUrl: widget.product.imgUri[selectedImage],)));
+
+          },
+          child: SizedBox(
+            width: 238,
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: CachedNetworkImage(
+                imageUrl:widget.product.imgUri[selectedImage],
+                placeholder: (context, url) => Image.asset(
+                  "assets/images/newlogo.png", // Replace with your loading image
+                  fit: BoxFit.cover,
+                ),
+                errorWidget: (context, url, error) => Icon(Icons.error),
                 fit: BoxFit.cover,
               ),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-              fit: BoxFit.cover,
             ),
           ),
         ),

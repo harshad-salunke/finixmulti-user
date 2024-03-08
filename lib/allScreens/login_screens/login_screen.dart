@@ -27,7 +27,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 Logincontroller logincontroller=Logincontroller();
-
+bool _passwordVisible=true;
 
   @override
   void initState() {
@@ -52,10 +52,22 @@ Logincontroller logincontroller=Logincontroller();
                 children: [
                   Image(
                     image: AssetImage('assets/images/company_logo.png'),
-                    height: 100,
+                    height: 80,
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 10,
+                  ),
+                  Text(
+                    ' Login ',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 30,
+                      fontFamily: 'Brand-Bold',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                   Container(
                     alignment: Alignment.center,
@@ -106,15 +118,25 @@ Logincontroller logincontroller=Logincontroller();
                         ),
                         TextField(
                           controller: logincontroller.password_Controller,
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: true,
+                          keyboardType: TextInputType.text,
+                          obscureText: _passwordVisible,
                           decoration: InputDecoration(
                             hintText: "Password",
                             labelText: "Password",
                             isDense: true,
                             prefixIcon: Icon(Icons.lock,size: 25,),
-                            suffixIcon: Icon(Icons.remove_red_eye_outlined,size: 25,),
-                            contentPadding: const EdgeInsets.symmetric(
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _passwordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _passwordVisible = !_passwordVisible;
+                                });
+                              },
+                            ),                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 22, horizontal: 15),
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -143,19 +165,6 @@ Logincontroller logincontroller=Logincontroller();
                           height: 10,
                         ),
               
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            "Forget Password ?",
-                            textAlign: TextAlign.end,
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: "Brand-Bold",
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
                         SizedBox(
                           height: 8,
                         ),

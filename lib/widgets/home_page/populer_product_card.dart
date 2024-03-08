@@ -32,15 +32,15 @@ class PopulerProductCard extends StatelessWidget {
       padding: EdgeInsets.all(5),
       margin:EdgeInsets.fromLTRB(left, top, right, bottom),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10)
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10)
       ),
       width: 160,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AspectRatio(
-            aspectRatio: 1.02,
+            aspectRatio: 1.08,
             child:   Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
@@ -61,14 +61,16 @@ class PopulerProductCard extends StatelessWidget {
                 ),
               ),
             )
-              ,
+            ,
           ),
           const SizedBox(height: 8),
           Container(
             margin: EdgeInsets.only(left: 10),
             child: Text(
               getText('${product.name}'),
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: TextStyle(
+                  fontSize: 12
+              ),
               maxLines: 2,
             ),
           ),
@@ -92,13 +94,13 @@ class PopulerProductCard extends StatelessWidget {
                   height: 24,
                   width: 24,
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: MyAppColor.white_light
+                      shape: BoxShape.circle,
+                      color: MyAppColor.white_light
                   ),
                   child: SvgPicture.asset(
                     "assets/icons/Heart Icon_2.svg",
                     colorFilter: ColorFilter.mode(
-                         const Color(0xFFFF4848),
+                        const Color(0xFFFF4848),
                         BlendMode.srcIn),
                   ),
                 ),
@@ -112,10 +114,8 @@ class PopulerProductCard extends StatelessWidget {
     );
   }
   String getText(String text){
-    if(text.length>19){
-      return '${text.substring(0,19)}...';
+    if(text.length>25){
+      return '${text.substring(0,25)}...';
     }
     return text;
-  }
-
-}
+  }}

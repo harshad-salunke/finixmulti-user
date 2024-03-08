@@ -3,7 +3,8 @@ import 'package:gif/gif.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DiscountCard extends StatefulWidget {
-  const DiscountCard({Key? key}) : super(key: key);
+  String discountText;
+   DiscountCard({Key? key,required this.discountText}) : super(key: key);
 
   @override
   State<DiscountCard> createState() => _DiscountCardState();
@@ -27,7 +28,7 @@ class _DiscountCardState extends State<DiscountCard> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "20 % off ",
+                "${widget.discountText} % off ",
                 style: GoogleFonts.openSans(
                     color: Colors.white,
                     fontSize: 22,

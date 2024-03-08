@@ -28,26 +28,26 @@ class _ServicesSreenState extends State<ServicesSreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.fromLTRB(25, 5, 0, 5),
+            margin: EdgeInsets.fromLTRB(25, 2, 0, 5),
             child: Text(
               "Category",
               style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 22,
                   fontWeight: FontWeight.bold,
                   color: MyAppColor.primary_color,
                   fontFamily: 'Brand-Bold'),
             ),
           ),
           Container(
-            margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+            margin: EdgeInsets.fromLTRB(15, 2, 15, 2),
             padding: EdgeInsets.zero,
-            height: 55,
             child: TextField(
               onChanged: (text){
                 isSearching=true;
                 serviceList.clear();
                 serviceProvider.service_list.forEach((product) {
-                  if(product.name.contains(text)){
+                  String name=product.name.toLowerCase();
+                  if(name.contains(text.toLowerCase())){
                     serviceList.add(product);
                   }else if(text==''){
                     serviceList.addAll(serviceProvider.service_list);
@@ -64,6 +64,8 @@ class _ServicesSreenState extends State<ServicesSreen> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
+                contentPadding: EdgeInsets.symmetric(horizontal: 5),
+
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(color: Color(0xff9e0093)),

@@ -6,7 +6,6 @@ import 'package:finixmulti_user/Models/DirectionDetails.dart';
 import 'package:finixmulti_user/Models/booking_modle.dart';
 import 'package:finixmulti_user/allScreens/booking_related_screens/booked_service_details_screen.dart';
 import 'package:finixmulti_user/widgets/global/myappbar.dart';
-import 'package:finixmulti_user/widgets/services_onboarding/service_selected_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,7 +18,6 @@ import '../../utils/app_colors.dart';
 import '../../utils/global_widgets.dart';
 import '../../widgets/bookingDetails_page/booked_service_card.dart';
 import '../../widgets/bookingDetails_page/bottom_serviceman_widget.dart';
-import '../../widgets/services_onboarding/bottom_locationSelect_widget.dart';
 class BookingDetailsScreen extends StatefulWidget {
   static final routePath="/bookingDetailsScreen";
   const BookingDetailsScreen({Key? key}) : super(key: key);
@@ -44,8 +42,6 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
 
 
   late StreamSubscription _employeeLocationSubscription;
-
-
 
   @override
   void dispose() {

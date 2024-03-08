@@ -338,7 +338,7 @@ class _ServicemanDetailsScreenState extends State<ServicemanDetailsScreen> {
   }
   void openWhatsApp() async {
     String phoneNumber = assigneEmployee.phone_number;
-    String message = 'Hello , I am user of Finixmulti app' ;
+    String message = 'Hello , I am user of Finixmulti Electrical app' ;
 
     String whatsappUrl = 'https://wa.me/$phoneNumber/?text=${Uri.encodeFull(message)}';
 

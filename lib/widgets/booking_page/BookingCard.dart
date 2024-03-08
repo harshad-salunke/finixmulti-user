@@ -41,18 +41,18 @@ class BookingCard extends StatelessWidget {
                     placeholder: (context, url) => Image.asset(
                       "assets/images/newlogo.png", // Replace with your loading image
                       fit: BoxFit.cover,
-                      height: 80,
-                      width: 80,
+                      height: 70,
+                      width: 70,
                     ),
                     errorWidget: (context, url, error) =>  Image.asset(
                       "assets/images/newlogo.png", // Replace with your loading image
                       fit: BoxFit.cover,
-                      height: 80,
-                      width: 80,
+                      height: 70,
+                      width: 70,
                     ),
                     fit: BoxFit.cover,
-                    height: 80,
-                    width: 80,
+                    height: 70,
+                    width: 70,
                   ),
                 ),
               ),
@@ -62,13 +62,11 @@ class BookingCard extends StatelessWidget {
                 children: [
                   Text(bookingModel.serviceName.length>18?"${bookingModel.serviceName.substring(0,18)} ..":'${bookingModel.serviceName}',
                     style: GoogleFonts.openSans(
-                      fontSize: 14,
+                      fontSize: 13,
                       fontWeight: FontWeight.w700
                     ),
                   ),
-                  SizedBox(
-                    height: 8,
-                  ),
+
                   Text("${formatDateString(bookingModel.date)}",
                     style: GoogleFonts.ubuntu(
                         fontSize: 12,
@@ -100,15 +98,14 @@ class BookingCard extends StatelessWidget {
 
 
                   Center(
-                    child: Icon(Icons.arrow_forward_ios),
+                    child: Icon(Icons.arrow_forward_ios,size: 20,),
                   )
                 ],
               )
-
             ],
           ),
           SizedBox(
-            height: 10,
+            height:2,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -127,7 +124,7 @@ class BookingCard extends StatelessWidget {
                   Text( "By Finixmulti Electrical",
                   style: GoogleFonts.ubuntu(
                     color: MyAppColor.black_light,
-                    fontSize: 12
+                    fontSize: 11
                   ),)
                 ],
               ),
@@ -143,7 +140,7 @@ class BookingCard extends StatelessWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color:getBookingTxtColor(),
-                      fontSize: 15
+                      fontSize: 13
                   ),
 
                 ),

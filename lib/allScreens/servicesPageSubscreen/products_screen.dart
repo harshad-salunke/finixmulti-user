@@ -29,17 +29,17 @@ class _ProductsScreenState extends State<ProductsScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              height: 60,
               margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
               child: TextField(
                 onChanged: (text){
                   isSearching=true;
                   productList.clear();
                   serviceProvider.product_list.forEach((product) {
-                    if(product.name.contains(text)){
+                    String name=product.name.toLowerCase();
+                    if(name.contains(text.toLowerCase())){
                       productList.add(product);
                     }else if(text==''){
-                      productList.addAll(serviceProvider.product_list);
+                      productList.addAll(serviceProvider.service_list);
                     }
                   });
                   setState(() {
@@ -49,7 +49,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 decoration: InputDecoration(
                   fillColor: Colors.white,
                   filled: true,
-
+                  contentPadding: EdgeInsets.symmetric(horizontal: 5),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

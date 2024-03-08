@@ -10,9 +10,9 @@ class ServiceDiscountBanner extends StatelessWidget {
   Color banner_color;
   Color btn_color;
   String btn_text;
-
+  Function buttonClick;
   ServiceDiscountBanner({required this.img,required this.title,required this.discription,
-    required   this.banner_color,required this.btn_color,required this.btn_text});
+    required   this.banner_color,required this.btn_color,required this.btn_text,required this.buttonClick});
 
 
   @override
@@ -50,9 +50,9 @@ class ServiceDiscountBanner extends StatelessWidget {
               SizedBox(
                 height: 30,
                 child: ElevatedButton(
-                  onPressed: () {
-
-                }, child: Text("$btn_text",style:
+                  onPressed: (){
+                    buttonClick();
+                  }, child: Text("$btn_text",style:
                 GoogleFonts.openSans(
                     color: Colors.white,
                   fontSize: 10

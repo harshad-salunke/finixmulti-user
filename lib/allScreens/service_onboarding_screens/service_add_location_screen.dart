@@ -43,18 +43,27 @@ class _ServiceAddLocationState extends State<ServiceAddLocation> {
     if(locationPermission==LocationPermission.denied || locationPermission==LocationPermission.deniedForever){
       LocationPermission requestPermission=await Geolocator.requestPermission();
     }else{
-
       Position position=await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-
       LatLng latLngPosition=LatLng(position.latitude, position.longitude);
+      try{
+        CameraPosition cameraPosition=new CameraPosition(target: latLngPosition,zoom:14);
+        new_controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+      }catch(ex){
 
-      CameraPosition cameraPosition=new CameraPosition(target: latLngPosition,zoom:14);
-      new_controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+      }
+
 
       await AssistanceMethods.searchAddressByCordinate(latLngPosition.latitude,latLngPosition.longitude,context);
       // await AssistanceMethods.searchAddressByCordinate(18.43655463412377,73.89477824953909,context);
 
     }
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    locatePosition();
+
   }
   @override
   Widget build(BuildContext context) {
@@ -88,7 +97,6 @@ class _ServiceAddLocationState extends State<ServiceAddLocation> {
                         onMapCreated: (GoogleMapController controller) {
                           _controller.complete(controller);
                           new_controller=controller;
-                          locatePosition();
                         },
                       ),
                     ),
