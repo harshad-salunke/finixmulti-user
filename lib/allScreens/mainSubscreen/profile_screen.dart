@@ -157,7 +157,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             String msg ="Hey there! 👋 I'm excited to share something valuable with you!"
                 " 🌟 Have you ever needed reliable electrical services in Pune and nearby areas?"
                 "Check out *Finixmulti Electrical* app ! Get high-quality solutions for maintenance, installation, and more."
-                "Download now: https://play.google.com/store/apps/details?id=com.harshad.finixmulti_user ⚡️.";
+                "Download now: https://play.google.com/store/apps/details?id=com.finix.finixmulti_user ⚡️.";
             final result = await Share.shareWithResult(msg);
 
             if (result.status == ShareResultStatus.success) {
@@ -256,7 +256,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void _launchPlayStore() async {
-    const String url = 'https://play.google.com/store/apps/details?id=com.harshad.finixmulti_user';
+    const String url = 'https://play.google.com/store/apps/details?id=com.finix.finixmulti_user';
     if (await canLaunch(url)) {
       await launch(url);
     } else {

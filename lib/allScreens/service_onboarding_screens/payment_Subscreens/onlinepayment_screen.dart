@@ -111,8 +111,9 @@ late ServiceProvider mainserviceProvider;
 
   void makePayment() async {
 
-    // showAlertDialog(context, "Available Soon !",
-    //     "Hii ${mainserviceProvider.userData.name } , Currently Online Payment Option Is Unavailable , You Can Go With Offline Payment Option.");
+    showAlertDialog(context, "Available Soon !",
+        "Hii ${mainserviceProvider.userData.name } , Currently Online Payment Option Is Unavailable , You Can Go With Offline Payment Option.");
+    return;
     Product selected=mainserviceProvider.selectedProduct;
     mainserviceProvider.bookingData.paymentOption='online';
     mainserviceProvider.bookingData.paymentMethod='UPI';

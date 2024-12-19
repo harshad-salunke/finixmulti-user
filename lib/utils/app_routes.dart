@@ -3,6 +3,7 @@
 import 'package:finixmulti_user/allScreens/booking_related_screens/booked_service_details_screen.dart';
 import 'package:finixmulti_user/allScreens/booking_related_screens/booking_details_screen.dart';
 import 'package:finixmulti_user/allScreens/booking_related_screens/booking_successful_screen.dart';
+import 'package:finixmulti_user/allScreens/login_screens/guestLogin.dart';
 import 'package:finixmulti_user/allScreens/profile_related_screens/notification_screen.dart';
 import 'package:finixmulti_user/allScreens/search_screen.dart';
 import 'package:finixmulti_user/allScreens/servicesPageSubscreen/product_details_screen.dart';
@@ -41,7 +42,7 @@ Map<String, Widget Function(BuildContext)>serviceOnBoardingRoutes={
 Map<String, Widget Function(BuildContext)>loginRoutes={
   LoginScreen.routePath:(context)=>LoginScreen(),
   RegisterScreen.routePath:(context)=>RegisterScreen(),
-
+  GuestLoginScreen.routePath:(context)=>GuestLoginScreen(),
 };
 
 Map<String, Widget Function(BuildContext)>bookingsAllRoutes={

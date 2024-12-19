@@ -16,6 +16,7 @@ class ServiceProvider extends ChangeNotifier {
       phone_number: '',
       isblock:false,
       name: '',
+      msgToken: '',
       uid: '',
       register_date: '',
       gender: '',

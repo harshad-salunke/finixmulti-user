@@ -8,12 +8,78 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:829843198764:android:a4c84dfbbe6cb798f3d289",
+        "android_client_info": {
+          "package_name": "com.finix.finixmulti_user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829843198764-uddfjfgpq7mslr78cp8g3g4fv2p1cuca.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbSmZf2a5djH9nd0zdK-lm4bz9JOn_isU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "829843198764-uddfjfgpq7mslr78cp8g3g4fv2p1cuca.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:829843198764:android:ea284b83acb96f21f3d289",
         "android_client_info": {
           "package_name": "com.harshad.finixmulti_admin"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "829843198764-uddfjfgpq7mslr78cp8g3g4fv2p1cuca.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbSmZf2a5djH9nd0zdK-lm4bz9JOn_isU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "829843198764-uddfjfgpq7mslr78cp8g3g4fv2p1cuca.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829843198764:android:a61e94e81bbca72ff3d289",
+        "android_client_info": {
+          "package_name": "com.harshad.finixmulti_employees"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829843198764-akssegprpoj2h1ekueqbr0icevle8llg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.harshad.finixmulti_employees",
+            "certificate_hash": "b1c8cdeac4c58840a62349ed9178a8766ed77d6f"
+          }
+        },
         {
           "client_id": "829843198764-uddfjfgpq7mslr78cp8g3g4fv2p1cuca.apps.googleusercontent.com",
           "client_type": 3

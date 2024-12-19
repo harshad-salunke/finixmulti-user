@@ -1,5 +1,6 @@
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:finixmulti_user/allScreens/login_screens/guestLogin.dart';
 import 'package:finixmulti_user/allScreens/login_screens/register_screen.dart';
 import 'package:finixmulti_user/textController/LoginController.dart';
 import 'package:flutter/cupertino.dart';
@@ -205,15 +206,12 @@ bool _passwordVisible=true;
                         ElevatedButton(
                           onPressed: () {
                             Navigator.pushNamed(
-                                context, RegisterScreen.routePath);
+                                context, GuestLoginScreen.routePath);
                           },
                           style: ElevatedButton.styleFrom(
-                            minimumSize: Size(double.infinity, 55),
+                            minimumSize: Size(double.infinity, 50),
                             side: BorderSide(
                                 color: MyAppColor.primary_color), // Border color
-                            // Customize other button appearance here
-
-                            // backgroundColor: Color(0xffd6e2ea),
 
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -222,14 +220,10 @@ bool _passwordVisible=true;
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image(
-                                image: AssetImage('assets/icons/google_logo.png'),
-                                height: 30,
-                                width: 30,
-                              ),
+                             Icon(Icons.account_circle_outlined),
                               SizedBox(width: 10,),
                               Text(
-                                "Create Account ",
+                                "Continue As Guest",
                                 style: TextStyle(
                                   color: MyAppColor.primary_color,
                                   fontWeight: FontWeight.w600,
@@ -309,5 +303,6 @@ void loginUserAccount()  async {
   }
 
 }
+
 
 }

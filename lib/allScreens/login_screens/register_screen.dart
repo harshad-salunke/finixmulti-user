@@ -3,6 +3,7 @@ import 'package:finixmulti_user/FirebaseServices/firebase_database_dao.dart';
 import 'package:finixmulti_user/FirebaseServices/providers/firbase_auth_handler.dart';
 import 'package:finixmulti_user/FirebaseServices/providers/services_provider.dart';
 import 'package:finixmulti_user/Models/UserModle.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:finixmulti_user/textController/RegistrationController.dart';
@@ -14,6 +15,7 @@ import '../../widgets/global/drop_downlist.dart';
 import '../../widgets/global/my_elevated_button.dart';
 import '../../widgets/global/progress_dialog.dart';
 import '../main_screen.dart';
+import 'guestLogin.dart';
 import 'login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -258,15 +260,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.pop(context);
-
+                            Navigator.pushNamed(
+                                context, GuestLoginScreen.routePath);
                           },
                           style: ElevatedButton.styleFrom(
-                            minimumSize: Size(double.infinity, 55),
+                            minimumSize: Size(double.infinity, 50),
                             side: BorderSide(
-                                color:
-                                    MyAppColor.primary_color), // Border color
-
+                                color: MyAppColor.primary_color), // Border color
 
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -275,17 +275,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image(
-                                image:
-                                    AssetImage('assets/icons/google_logo.png'),
-                                height: 30,
-                                width: 30,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
+                              Icon(Icons.account_circle_outlined),
+                              SizedBox(width: 10,),
                               Text(
-                                "Login Now",
+                                "Continue as Guest",
                                 style: TextStyle(
                                   color: MyAppColor.primary_color,
                                   fontWeight: FontWeight.w600,
@@ -296,6 +289,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ],
                           ),
                         ),
+
                         SizedBox(
                           height: 15,
                         ),
@@ -343,7 +337,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       String auth_response=await  Provider.of<FirebaseAuthHandler>(context,listen: false).signUpWithEmailAndPassword(usermodle);
 
       if(auth_response=='created'){
-
+        String? token = await FirebaseMessaging.instance.getToken();
+        usermodle.msgToken=token!;
+        print(token);
         await Provider.of<ServiceProvider>(context,listen: false).saveUserDetails(usermodle);
         Navigator.pop(context);
         showToast("Account Successfully Created ...!", ContentType.success,context);

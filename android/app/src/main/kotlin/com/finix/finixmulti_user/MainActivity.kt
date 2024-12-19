@@ -1,4 +1,4 @@
-package com.harshad.finixmulti_user
+package com.finix.finixmulti_user
 
 import io.flutter.embedding.android.FlutterActivity
 

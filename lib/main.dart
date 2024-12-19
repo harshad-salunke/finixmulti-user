@@ -4,6 +4,7 @@ import 'package:finixmulti_user/utils/app_routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:provider/provider.dart';
 
 import 'FirebaseServices/providers/services_provider.dart';
@@ -29,12 +30,46 @@ void main() async {
     await Firebase.initializeApp();
 
   }
-  runApp(const MyApp());
+  runApp( Myapp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
+class Myapp extends StatefulWidget {
+  const Myapp({Key? key}) : super(key: key);
+
+  @override
+  State<Myapp> createState() => _MyappState();
+}
+
+class _MyappState extends State<Myapp> {
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkForUpdate();
+  }
+
+  Future<void> checkForUpdate() async {
+    print('checking for Update');
+    InAppUpdate.checkForUpdate().then((info) {
+      setState(() {
+        if (info.updateAvailability == UpdateAvailability.updateAvailable) {
+          print('update available');
+          update();
+        }
+      });
+    }).catchError((e) {
+      print(e.toString());
+    });
+  }
+
+  void update() async {
+    print('Updating');
+    await InAppUpdate.startFlexibleUpdate();
+    InAppUpdate.completeFlexibleUpdate().then((_) {}).catchError((e) {
+      print(e.toString());
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -43,7 +78,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => FirebaseAuthHandler()),
       ],
       child: MaterialApp(
-        title: 'Finix Electrical',
+        title: 'Finixmulti Electrical Pvt Ltd',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: MyAppColor.primary_color),
@@ -56,3 +91,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
